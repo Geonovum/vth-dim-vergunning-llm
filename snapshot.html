@@ -1389,57 +1389,112 @@ img.license{float:left;padding-right:5px;background:0 0}
 
 
 
-<section class="informative"><p>Toelichting op het informatiemodel (testopzet)</p>
-<p>Dit informatiemodel is ontwikkeld als proefopstelling voor het testen van de inzet van een Large Language Model (LLM) in combinatie met prompt engineering. Het doel is om te onderzoeken in hoeverre gegevens die in vergunningsdocumenten (PDF’s) zijn vastgelegd, automatisch kunnen worden omgezet naar gestructureerde data volgens een vooraf gedefinieerde informatiemodel-structuur.</p>
-<p>Het model is gebaseerd op en sluit aan bij het Conceptueel Informatiemodel Vergunningverlening, Toezicht en Handhaving (CIM VTH Flo). Het is nadrukkelijk een uitbreiding in de vorm van een domeininformatiemodel (DIM), specifiek ingericht voor deze test.</p>
-<p>Afbakening en uitgangspunten</p>
-<p>Het model is uitsluitend bedoeld als testomgeving en staat volledig los van het (domein)informatiemodel dat binnen het deskundigheidsgebied Vergunningverlening milieu (Bal + omgevingsplan) in het kader van het project Eenheid van Taal wordt ontwikkeld.</p>
-<p>Het model is niet volledig, pretendeert niet juist of volledig aan te sluiten bij de informatiebehoefte in het vakgebied, en bevat waar nodig pragmatische keuzes en vereenvoudigingen (“cherry picking”).</p>
-<p>Doel is niet om een definitief of volledig informatiemodel op te leveren, maar om de technische mogelijkheden van LLM’s bij het structureren van vergunninggegevens te verkennen.</p>
-<p>Uitgangsbronnen en inspiratie</p>
+<section class="informative" id="toelichting-op-het-informatiemodel-testopzet"><div class="header-wrapper"><h2 id="x1-toelichting-op-het-informatiemodel-testopzet"><bdi class="secno">1. </bdi>Toelichting op het informatiemodel (testopzet)</h2><a class="self-link" href="#toelichting-op-het-informatiemodel-testopzet" aria-label="Permalink for Section 1."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
+<p>Dit informatiemodel is ontwikkeld als proefopstelling voor het testen van de
+inzet van een Large Language Model (LLM) in combinatie met prompt engineering.
+Het doel is om te onderzoeken in hoeverre gegevens die in vergunningsdocumenten
+(PDF’s) zijn vastgelegd, automatisch kunnen worden omgezet naar gestructureerde
+data volgens een vooraf gedefinieerde informatiemodel-structuur.</p>
+<p>Het model is gebaseerd op en sluit aan bij het Conceptueel Informatiemodel
+Vergunningverlening, Toezicht en Handhaving (CIM VTH FLo). Het is nadrukkelijk
+een uitbreiding in de vorm van een domeininformatiemodel (DIM), specifiek
+ingericht voor deze test.</p>
+<section id="afbakening-en-uitgangspunten"><div class="header-wrapper"><h3 id="x1-1-afbakening-en-uitgangspunten"><bdi class="secno">1.1 </bdi>Afbakening en uitgangspunten</h3><a class="self-link" href="#afbakening-en-uitgangspunten" aria-label="Permalink for Section 1.1"></a></div>
+<p>Het model is uitsluitend bedoeld als testomgeving en staat volledig los van het
+(domein)informatiemodel dat binnen het deskundigheidsgebied Vergunningverlening
+milieu (Bal + omgevingsplan) in het kader van het project Eenheid van Taal wordt
+ontwikkeld.</p>
+<p>Het model is niet volledig, pretendeert niet juist of volledig aan te sluiten
+bij de informatiebehoefte in het vakgebied, en bevat waar nodig pragmatische
+keuzes en vereenvoudigingen (“cherry picking”).</p>
+<p>Doel is niet om een definitief of volledig informatiemodel op te leveren, maar
+om de technische mogelijkheden van LLM’s bij het structureren van
+vergunninggegevens te verkennen.</p>
+</section><section id="uitgangsbronnen-en-inspiratie"><div class="header-wrapper"><h3 id="x1-2-uitgangsbronnen-en-inspiratie"><bdi class="secno">1.2 </bdi>Uitgangsbronnen en inspiratie</h3><a class="self-link" href="#uitgangsbronnen-en-inspiratie" aria-label="Permalink for Section 1.2"></a></div>
 <p>Het model bouwt voort op eerder werk, waaronder:</p>
-<p>de informatie-analyse Altijd Actuele Gestructureerde Aanvraag (AAGA),</p>
-<p>het informatiemodel Altijd Actuele Digitale Vergunning (AADV),</p>
-<p>en onderdelen uit het CIM VTH Flo.</p>
-<p>Specifiek zijn elementen uit de volgende onderdelen van CIM/AADV benut:</p>
-<p>3.2.3 Vergunning</p>
-<p>3.2.5 Locatie</p>
-<p>3.2.7 Voorschrift, bedrijfsonderdeel en locatie</p>
-<p>3.2.10 Juridische regel</p>
-<p>Daarnaast zijn uit AADVA en AAGA gegevens over emissies, eenheden, bedrijfsinstallaties, bedrijfsactiviteiten en de relatie Natura2000-gebied ↔ Locatie geselecteerd. Hierbij is bewust niet alles meegenomen: de selectie is gemaakt ten behoeve van de test.</p>
-<p>Belangrijkste uitbreidingen</p>
-<p>Het domeininformatiemodel breidt het CIM VTH Flo uit met:</p>
-<p>Entiteiten TOESTEMMING en SPECIFIEK VOORSCHRIFT,</p>
-<p>Attributen voor emissies en eenheden (omgevings- en productienormen),</p>
-<p>Gegevenstypen voor bedrijfsinstallaties en bedrijfsactiviteiten,</p>
-<p>De relatie tussen Natura2000-gebieden en Locatie.</p>
-<p>Modellering en keuzes</p>
-<p>Om aan te sluiten op het CIM VTH Flo zijn enkele aanpassingen en afwijkingen doorgevoerd ten opzichte van IM AADV:</p>
-<p>Richting van relaties is omgekeerd, bijvoorbeeld:</p>
-<p>IM AADV: Voorschrift “geldt voor” Bedrijfsactiviteit</p>
-<p>DIM: Bedrijfsactiviteit “is onderworpen aan” Voorschrift</p>
-<p>IM AADV: Voorschrift “is opgenomen in” Voorschrifttekst</p>
-<p>DIM: Voorschrifttekst “bevat” Voorschrift</p>
-<p>Relatie Locatie ↔ Geo-object is gemodelleerd op basis van het CIM VTH, i.p.v. Ruimtelijk object in IM AADV.</p>
-<p>Waar nodig zijn relaties hernoemd om conflicten met dubbele relatiebenamingen te voorkomen (bijvoorbeeld meerdere keren “geldt voor”).</p>
-<p>Technische keuzes</p>
-<p>Omdat het model door de Geonovum-tooling moet kunnen worden verwerkt, zijn enkele praktische aanpassingen gedaan in terminologie en relatiebenamingen.</p>
+<ul>
+<li><p>de informatie-analyse Altijd Actuele Gestructureerde Aanvraag (AAGA),</p>
+</li>
+<li><p>het informatiemodel Altijd Actuele Digitale Vergunning (AADV),</p>
+</li>
+<li><p>en onderdelen uit het CIM VTH FLo.</p>
+</li>
+</ul>
+<p>Specifiek zijn elementen uit de volgende onderdelen van CIM AADV benut:</p>
+<ul>
+<li><p>3.2.3 Vergunning</p>
+</li>
+<li><p>3.2.5 Locatie</p>
+</li>
+<li><p>3.2.7 Voorschrift, bedrijfsonderdeel en locatie</p>
+</li>
+<li><p>3.2.10 Juridische regel</p>
+</li>
+</ul>
+<p>Daarbij zijn uit AADV en AAGA gegevens over emissies, eenheden,
+bedrijfsinstallaties, bedrijfsactiviteiten en de relatie Natura2000-gebied ↔
+Locatie geselecteerd. Hierbij is bewust niet alles meegenomen: de selectie is
+gemaakt ten behoeve van de test.</p>
+</section><section id="belangrijkste-uitbreidingen"><div class="header-wrapper"><h3 id="x1-3-belangrijkste-uitbreidingen"><bdi class="secno">1.3 </bdi>Belangrijkste uitbreidingen</h3><a class="self-link" href="#belangrijkste-uitbreidingen" aria-label="Permalink for Section 1.3"></a></div>
+<p>Het domeininformatiemodel breidt het CIM VTH FLo uit met:</p>
+<ul>
+<li><p>Attributen voor emissies en eenheden (omgevings- en productienormen),</p>
+</li>
+<li><p>Gegevenstypen voor bedrijfsinstallaties en bedrijfsactiviteiten,</p>
+</li>
+<li><p>De relatie tussen Natura2000-gebieden en Locatie.</p>
+</li>
+</ul>
+</section><section id="modellering-en-keuzes"><div class="header-wrapper"><h3 id="x1-4-modellering-en-keuzes"><bdi class="secno">1.4 </bdi>Modellering en keuzes</h3><a class="self-link" href="#modellering-en-keuzes" aria-label="Permalink for Section 1.4"></a></div>
+<p>Om aan te sluiten op het CIM VTH FLo zijn enkele aanpassingen en afwijkingen
+doorgevoerd ten opzichte van CIM AADV:</p>
+<ul>
+<li><p>Richting van relaties is omgekeerd, bijvoorbeeld:</p>
+<ul>
+<li><p>IM AADV: Voorschrift “geldt voor” Bedrijfsactiviteit</p>
+</li>
+<li><p>DIM: Bedrijfsactiviteit “is onderworpen aan” Voorschrift</p>
+</li>
+<li><p>IM AADV: Voorschrift “is opgenomen in” Voorschrifttekst</p>
+</li>
+<li><p>DIM: Voorschrifttekst “bevat” Voorschrift</p>
+</li>
+</ul>
+</li>
+<li><p>Relatie Locatie ↔ Geo-object is gemodelleerd op basis van het CIM VTH FLo,
+i.p.v. Ruimtelijk object in CIM AADV.</p>
+</li>
+<li><p>Waar nodig zijn relaties hernoemd om conflicten met dubbele
+relatiebenamingen te voorkomen (bijvoorbeeld meerdere keren “geldt voor”).</p>
+</li>
+</ul>
+</section><section id="technische-keuzes"><div class="header-wrapper"><h3 id="x1-5-technische-keuzes"><bdi class="secno">1.5 </bdi>Technische keuzes</h3><a class="self-link" href="#technische-keuzes" aria-label="Permalink for Section 1.5"></a></div>
+<p>Omdat het model door de Geonovum-tooling moet kunnen worden verwerkt, zijn
+enkele praktische aanpassingen gedaan in terminologie en relatiebenamingen.</p>
 <p>Verder is in de visualisatie onderscheid aangebracht:</p>
-<p>CIM VTH Flo objecttypen zijn blauw weergegeven,</p>
-<p>Domeinobjecttypen (toevoegingen voor dit testmodel) zijn geel weergegeven.</p>
-<p>Conclusie</p>
-<p>Dit informatiemodel is dus geen volledig of formeel model, maar een experimenteel hulpmiddel om inzicht te krijgen in de mogelijkheden van LLM’s bij het structureren van vergunninggegevens. De modellering is pragmatisch en testgericht, en moet vooral worden gezien als een stap in de verkenning van nieuwe technologie, niet als eindresultaat.</p>
-</section>
+<ul>
+<li><p>CIM VTH FLo objecttypen zijn blauw weergegeven,</p>
+</li>
+<li><p>Domeinobjecttypen (toevoegingen voor dit testmodel) zijn geel weergegeven.</p>
+</li>
+</ul>
+</section><section id="conclusie"><div class="header-wrapper"><h3 id="x1-6-conclusie"><bdi class="secno">1.6 </bdi>Conclusie</h3><a class="self-link" href="#conclusie" aria-label="Permalink for Section 1.6"></a></div>
+<p>Dit informatiemodel is dus geen volledig of formeel model, maar een
+experimenteel hulpmiddel om inzicht te krijgen in de mogelijkheden van LLM’s bij
+het structureren van vergunninggegevens. De modellering is pragmatisch en
+testgericht, en moet vooral worden gezien als een stap in de verkenning van
+nieuwe technologie, niet als eindresultaat.</p>
+</section></section>
 
 
 
 
-<section id="cat" class="normative"><div class="header-wrapper"><h2 id="x1-gegevensdefinitie"><bdi class="secno">1. </bdi>Gegevensdefinitie</h2><a class="self-link" href="#cat" aria-label="Permalink for Section 1."></a></div><section id="global_package_Vergunning"><div class="header-wrapper"><h3 id="x1-1-domein-vergunning"><bdi class="secno">1.1 </bdi>Domein   Vergunning</h3><a class="self-link" href="#global_package_Vergunning" aria-label="Permalink for Section 1.1"></a></div><section id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><div class="header-wrapper"><h4 id="x1-1-1-vergunning-selectie-overzicht"><bdi class="secno">1.1.1 </bdi>   Vergunning selectie- overzicht</h4><a class="self-link" href="#EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" aria-label="Permalink for Section 1.1.1"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning-selectie-overzicht"><img id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" src="data/Images/EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C.png" usemap="#imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" alt="Diagram: Vergunning selectie- overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning-selectie-overzicht">Figuur <bdi class="figno">1</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning selectie- overzicht</span></figcaption></figure><map name="imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><area shape="rect" alt="TypeInstallatie" coords="528,686,651,790" href="#detail_class_Vergunning_TypeInstallatie"><area shape="rect" alt="Productienorm" coords="371,737,494,832" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="203,737,326,832" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="259,583,382,651" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,396,218,535" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,438,516,494" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="759,621,882,716" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="516,535,665,639" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Betreffende (afval)stof" coords="759,770,882,865" href="#global_class_Vergunning_Betreffendeafvalstof"><area shape="rect" alt="Locatie" coords="1202,277,1325,513" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,457,1696,513" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="1066,63,1277,166" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,85,774,277" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"></map><p>
+<section id="cat" class="normative"><div class="header-wrapper"><h2 id="x2-gegevensdefinitie"><bdi class="secno">2. </bdi>Gegevensdefinitie</h2><a class="self-link" href="#cat" aria-label="Permalink for Section 2."></a></div><section id="global_package_Vergunning"><div class="header-wrapper"><h3 id="x2-1-domein-vergunning"><bdi class="secno">2.1 </bdi>Domein   Vergunning</h3><a class="self-link" href="#global_package_Vergunning" aria-label="Permalink for Section 2.1"></a></div><section id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><div class="header-wrapper"><h4 id="x2-1-1-vergunning-selectie-overzicht"><bdi class="secno">2.1.1 </bdi>   Vergunning selectie- overzicht</h4><a class="self-link" href="#EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" aria-label="Permalink for Section 2.1.1"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning-selectie-overzicht"><img id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" src="data/Images/EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C.png" usemap="#imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" alt="Diagram: Vergunning selectie- overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning-selectie-overzicht">Figuur <bdi class="figno">1</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning selectie- overzicht</span></figcaption></figure><map name="imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><area shape="rect" alt="TypeInstallatie" coords="528,686,651,790" href="#detail_class_Vergunning_TypeInstallatie"><area shape="rect" alt="Productienorm" coords="371,737,494,832" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="203,737,326,832" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="259,583,382,651" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,396,218,535" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,438,516,494" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="759,621,882,716" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="516,535,665,639" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Betreffende (afval)stof" coords="759,770,882,865" href="#global_class_Vergunning_Betreffendeafvalstof"><area shape="rect" alt="Locatie" coords="1202,277,1325,513" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,457,1696,513" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="1066,63,1277,166" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,85,774,277" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"></map><p>
                         </p><p></p>
-                     <p></p></div></section><section id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><div class="header-wrapper"><h4 id="x1-1-2-vergunning-overzicht"><bdi class="secno">1.1.2 </bdi>   Vergunning - overzicht</h4><a class="self-link" href="#EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" aria-label="Permalink for Section 1.1.2"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning"><img id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" src="data/Images/EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D.png" usemap="#imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" alt="Diagram: Vergunning - overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning">Figuur <bdi class="figno">2</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning</span></figcaption></figure><map name="imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><area shape="rect" alt="TypeInstallatie" coords="528,1489,651,1592" href="#detail_class_Vergunning_TypeInstallatie"><area shape="rect" alt="VESTIGING" coords="293,63,543,273" href="#global_class_CIM_VESTIGING"><area shape="rect" alt="BETROKKENE" coords="716,87,970,250" href="#global_class_CIM_BETROKKENE"><area shape="rect" alt="Productienorm" coords="371,1509,494,1605" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="203,1509,326,1605" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="259,1355,382,1423" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,1168,218,1307" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,1210,516,1266" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="759,1393,882,1489" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="516,1307,665,1411" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Betreffende (afval)stof" coords="1381,1636,1504,1732" href="#global_class_Vergunning_Betreffendeafvalstof"><area shape="rect" alt="ALGEMEEN VERBINDEND VOORSCHRIFT" coords="2126,386,2393,596" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><area shape="rect" alt="Locatie" coords="1202,1049,1325,1285" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,1230,1696,1285" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="2155,797,2366,901" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="ACTIVITEITUITVOERING" coords="1164,404,1481,579" href="#global_class_CIM_ACTIVITEITUITVOERING"><area shape="rect" alt="ACTIVITEIT" coords="1591,413,1853,570" href="#global_class_CIM_ACTIVITEIT"><area shape="rect" alt="VTH-OBJECT" coords="1678,761,1928,936" href="#global_class_CIM_VTHOBJECT"><area shape="rect" alt="OVERWEGING" coords="903,614,1148,789" href="#global_class_CIM_OVERWEGING"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,857,774,1049" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"><area shape="rect" alt="TOESTEMMING" coords="536,368,774,614" href="#global_class_CIM_TOESTEMMING"></map><p>
+                     <p></p></div></section><section id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><div class="header-wrapper"><h4 id="x2-1-2-vergunning-overzicht"><bdi class="secno">2.1.2 </bdi>   Vergunning - overzicht</h4><a class="self-link" href="#EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" aria-label="Permalink for Section 2.1.2"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning"><img id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" src="data/Images/EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D.png" usemap="#imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" alt="Diagram: Vergunning - overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning">Figuur <bdi class="figno">2</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning</span></figcaption></figure><map name="imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><area shape="rect" alt="TypeInstallatie" coords="528,1489,651,1592" href="#detail_class_Vergunning_TypeInstallatie"><area shape="rect" alt="VESTIGING" coords="293,63,543,273" href="#global_class_CIM_VESTIGING"><area shape="rect" alt="BETROKKENE" coords="716,87,970,250" href="#global_class_CIM_BETROKKENE"><area shape="rect" alt="Productienorm" coords="371,1509,494,1605" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="203,1509,326,1605" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="259,1355,382,1423" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,1168,218,1307" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,1210,516,1266" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="759,1393,882,1489" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="516,1307,665,1411" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Betreffende (afval)stof" coords="1381,1636,1504,1732" href="#global_class_Vergunning_Betreffendeafvalstof"><area shape="rect" alt="ALGEMEEN VERBINDEND VOORSCHRIFT" coords="2126,386,2393,596" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><area shape="rect" alt="Locatie" coords="1202,1049,1325,1285" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,1230,1696,1285" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="2155,797,2366,901" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="ACTIVITEITUITVOERING" coords="1164,404,1481,579" href="#global_class_CIM_ACTIVITEITUITVOERING"><area shape="rect" alt="ACTIVITEIT" coords="1591,413,1853,570" href="#global_class_CIM_ACTIVITEIT"><area shape="rect" alt="VTH-OBJECT" coords="1678,761,1928,936" href="#global_class_CIM_VTHOBJECT"><area shape="rect" alt="OVERWEGING" coords="903,614,1148,789" href="#global_class_CIM_OVERWEGING"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,857,774,1049" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"><area shape="rect" alt="TOESTEMMING" coords="536,368,774,614" href="#global_class_CIM_TOESTEMMING"></map><p>
                         </p><p></p>
-                     <p></p></div></section><section id="objecttypen"><div class="header-wrapper"><h4 id="x1-1-3-objecttypen"><bdi class="secno">1.1.3 </bdi>Objecttypen   </h4><a class="self-link" href="#objecttypen" aria-label="Permalink for Section 1.1.3"></a></div>
-            <section id="global_class_Vergunning_Voorschrifttekst"><div class="header-wrapper"><h5 id="x1-1-3-1-voorschrifttekst"><bdi class="secno">1.1.3.1 </bdi>   Voorschrifttekst</h5><a class="self-link" href="#global_class_Vergunning_Voorschrifttekst" aria-label="Permalink for Section 1.1.3.1"></a></div>
+                     <p></p></div></section><section id="objecttypen"><div class="header-wrapper"><h4 id="x2-1-3-objecttypen"><bdi class="secno">2.1.3 </bdi>Objecttypen   </h4><a class="self-link" href="#objecttypen" aria-label="Permalink for Section 2.1.3"></a></div>
+            <section id="global_class_Vergunning_Voorschrifttekst"><div class="header-wrapper"><h5 id="x2-1-3-1-voorschrifttekst"><bdi class="secno">2.1.3.1 </bdi>   Voorschrifttekst</h5><a class="self-link" href="#global_class_Vergunning_Voorschrifttekst" aria-label="Permalink for Section 2.1.3.1"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Voorschrifttekst</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Voorschrifttekst" aria-label="Permalink for this Section"></a></div>
                   
@@ -1476,7 +1531,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Juridischeregel"><div class="header-wrapper"><h5 id="x1-1-3-2-juridische-regel"><bdi class="secno">1.1.3.2 </bdi>   Juridische regel</h5><a class="self-link" href="#global_class_Vergunning_Juridischeregel" aria-label="Permalink for Section 1.1.3.2"></a></div>
+            <section id="global_class_Vergunning_Juridischeregel"><div class="header-wrapper"><h5 id="x2-1-3-2-juridische-regel"><bdi class="secno">2.1.3.2 </bdi>   Juridische regel</h5><a class="self-link" href="#global_class_Vergunning_Juridischeregel" aria-label="Permalink for Section 2.1.3.2"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Juridische regel</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-attributen">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Juridischeregel" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
@@ -1494,7 +1549,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td>1</td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Norm"><div class="header-wrapper"><h5 id="x1-1-3-3-norm"><bdi class="secno">1.1.3.3 </bdi>   Norm</h5><a class="self-link" href="#global_class_Vergunning_Norm" aria-label="Permalink for Section 1.1.3.3"></a></div>
+            <section id="global_class_Vergunning_Norm"><div class="header-wrapper"><h5 id="x2-1-3-3-norm"><bdi class="secno">2.1.3.3 </bdi>   Norm</h5><a class="self-link" href="#global_class_Vergunning_Norm" aria-label="Permalink for Section 2.1.3.3"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Norm</td></tr><tr><th>Indicatie abstract object</th><td>Ja</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties-0">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Norm" aria-label="Permalink for this Section"></a></div>
                   
@@ -1507,7 +1562,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Omgevingsnorm"><div class="header-wrapper"><h5 id="x1-1-3-4-omgevingsnorm"><bdi class="secno">1.1.3.4 </bdi>   Omgevingsnorm</h5><a class="self-link" href="#global_class_Vergunning_Omgevingsnorm" aria-label="Permalink for Section 1.1.3.4"></a></div>
+            <section id="global_class_Vergunning_Omgevingsnorm"><div class="header-wrapper"><h5 id="x2-1-3-4-omgevingsnorm"><bdi class="secno">2.1.3.4 </bdi>   Omgevingsnorm</h5><a class="self-link" href="#global_class_Vergunning_Omgevingsnorm" aria-label="Permalink for Section 2.1.3.4"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Omgevingsnorm</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties-1">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Omgevingsnorm" aria-label="Permalink for this Section"></a></div>
                   
@@ -1520,7 +1575,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Productienorm"><div class="header-wrapper"><h5 id="x1-1-3-5-productienorm"><bdi class="secno">1.1.3.5 </bdi>   Productienorm</h5><a class="self-link" href="#global_class_Vergunning_Productienorm" aria-label="Permalink for Section 1.1.3.5"></a></div>
+            <section id="global_class_Vergunning_Productienorm"><div class="header-wrapper"><h5 id="x2-1-3-5-productienorm"><bdi class="secno">2.1.3.5 </bdi>   Productienorm</h5><a class="self-link" href="#global_class_Vergunning_Productienorm" aria-label="Permalink for Section 2.1.3.5"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Productienorm</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties-2">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Productienorm" aria-label="Permalink for this Section"></a></div>
                   
@@ -1533,7 +1588,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Bedrijfsactiviteit"><div class="header-wrapper"><h5 id="x1-1-3-6-bedrijfsactiviteit"><bdi class="secno">1.1.3.6 </bdi>   Bedrijfsactiviteit</h5><a class="self-link" href="#global_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for Section 1.1.3.6"></a></div>
+            <section id="global_class_Vergunning_Bedrijfsactiviteit"><div class="header-wrapper"><h5 id="x2-1-3-6-bedrijfsactiviteit"><bdi class="secno">2.1.3.6 </bdi>   Bedrijfsactiviteit</h5><a class="self-link" href="#global_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for Section 2.1.3.6"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Bedrijfsactiviteit</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties-3">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for this Section"></a></div>
                   
@@ -1570,7 +1625,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Bedrijfsinstallatie"><div class="header-wrapper"><h5 id="x1-1-3-7-bedrijfsinstallatie"><bdi class="secno">1.1.3.7 </bdi>   Bedrijfsinstallatie</h5><a class="self-link" href="#global_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for Section 1.1.3.7"></a></div>
+            <section id="global_class_Vergunning_Bedrijfsinstallatie"><div class="header-wrapper"><h5 id="x2-1-3-7-bedrijfsinstallatie"><bdi class="secno">2.1.3.7 </bdi>   Bedrijfsinstallatie</h5><a class="self-link" href="#global_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for Section 2.1.3.7"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Bedrijfsinstallatie</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-attributen-0">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
@@ -1604,7 +1659,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Locatie"><div class="header-wrapper"><h5 id="x1-1-3-8-locatie"><bdi class="secno">1.1.3.8 </bdi>   Locatie</h5><a class="self-link" href="#global_class_Vergunning_Locatie" aria-label="Permalink for Section 1.1.3.8"></a></div>
+            <section id="global_class_Vergunning_Locatie"><div class="header-wrapper"><h5 id="x2-1-3-8-locatie"><bdi class="secno">2.1.3.8 </bdi>   Locatie</h5><a class="self-link" href="#global_class_Vergunning_Locatie" aria-label="Permalink for Section 2.1.3.8"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Locatie</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties-5">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Locatie" aria-label="Permalink for this Section"></a></div>
                   
@@ -1621,7 +1676,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Natura2000gebied"><div class="header-wrapper"><h5 id="x1-1-3-9-natura2000gebied"><bdi class="secno">1.1.3.9 </bdi>   Natura2000gebied</h5><a class="self-link" href="#global_class_Vergunning_Natura2000gebied" aria-label="Permalink for Section 1.1.3.9"></a></div>
+            <section id="global_class_Vergunning_Natura2000gebied"><div class="header-wrapper"><h5 id="x2-1-3-9-natura2000gebied"><bdi class="secno">2.1.3.9 </bdi>   Natura2000gebied</h5><a class="self-link" href="#global_class_Vergunning_Natura2000gebied" aria-label="Permalink for Section 2.1.3.9"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Natura2000gebied</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
                <div class="header-wrapper"><h6 id="overzicht-relaties-6">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Natura2000gebied" aria-label="Permalink for this Section"></a></div>
                   
@@ -1638,12 +1693,12 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Betreffendeafvalstof"><div class="header-wrapper"><h5 id="x1-1-3-10-betreffende-afval-stof"><bdi class="secno">1.1.3.10 </bdi>   Betreffende (afval)stof</h5><a class="self-link" href="#global_class_Vergunning_Betreffendeafvalstof" aria-label="Permalink for Section 1.1.3.10"></a></div>
+            <section id="global_class_Vergunning_Betreffendeafvalstof"><div class="header-wrapper"><h5 id="x2-1-3-10-betreffende-afval-stof"><bdi class="secno">2.1.3.10 </bdi>   Betreffende (afval)stof</h5><a class="self-link" href="#global_class_Vergunning_Betreffendeafvalstof" aria-label="Permalink for Section 2.1.3.10"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Betreffende (afval)stof</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
             </section>
-         </section><section id="attribuut-en-relatiesoort-details"><div class="header-wrapper"><h4 id="x1-1-4-attribuut-en-relatiesoort-details"><bdi class="secno">1.1.4 </bdi>Attribuut- en relatiesoort details  </h4><a class="self-link" href="#attribuut-en-relatiesoort-details" aria-label="Permalink for Section 1.1.4"></a></div>
-            <section id="objecttype-details"><div class="header-wrapper"><h5 id="x1-1-4-1-objecttype-details"><bdi class="secno">1.1.4.1 </bdi>Objecttype details  </h5><a class="self-link" href="#objecttype-details" aria-label="Permalink for Section 1.1.4.1"></a></div>
-               <section id="detail_class_Vergunning_Voorschrifttekst"><div class="header-wrapper"><h6 id="x1-1-4-1-1-voorschrifttekst"><bdi class="secno">1.1.4.1.1 </bdi>   Voorschrifttekst</h6><a class="self-link" href="#detail_class_Vergunning_Voorschrifttekst" aria-label="Permalink for Section 1.1.4.1.1"></a></div>
+         </section><section id="attribuut-en-relatiesoort-details"><div class="header-wrapper"><h4 id="x2-1-4-attribuut-en-relatiesoort-details"><bdi class="secno">2.1.4 </bdi>Attribuut- en relatiesoort details  </h4><a class="self-link" href="#attribuut-en-relatiesoort-details" aria-label="Permalink for Section 2.1.4"></a></div>
+            <section id="objecttype-details"><div class="header-wrapper"><h5 id="x2-1-4-1-objecttype-details"><bdi class="secno">2.1.4.1 </bdi>Objecttype details  </h5><a class="self-link" href="#objecttype-details" aria-label="Permalink for Section 2.1.4.1"></a></div>
+               <section id="detail_class_Vergunning_Voorschrifttekst"><div class="header-wrapper"><h6 id="x2-1-4-1-1-voorschrifttekst"><bdi class="secno">2.1.4.1.1 </bdi>   Voorschrifttekst</h6><a class="self-link" href="#detail_class_Vergunning_Voorschrifttekst" aria-label="Permalink for Section 2.1.4.1.1"></a></div>
                   <div class="deepheader" id="detail_association_Vergunning_Voorschrifttekst_voorschrift"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Voorschrifttekst">Voorschrifttekst</a> bevat</h7>
                      
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>bevat</td></tr><tr><th>Gerelateerd objecttype</th><td>
@@ -1663,7 +1718,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_Vergunning_Juridischeregel"><div class="header-wrapper"><h6 id="x1-1-4-1-2-juridische-regel"><bdi class="secno">1.1.4.1.2 </bdi>   Juridische regel</h6><a class="self-link" href="#detail_class_Vergunning_Juridischeregel" aria-label="Permalink for Section 1.1.4.1.2"></a></div>
+               <section id="detail_class_Vergunning_Juridischeregel"><div class="header-wrapper"><h6 id="x2-1-4-1-2-juridische-regel"><bdi class="secno">2.1.4.1.2 </bdi>   Juridische regel</h6><a class="self-link" href="#detail_class_Vergunning_Juridischeregel" aria-label="Permalink for Section 2.1.4.1.2"></a></div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Juridischeregel_Einddatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Juridischeregel">Juridische regel</a> Einddatum</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Einddatum</td></tr><tr><th>Formaat</th><td>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
@@ -1689,7 +1744,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                
                
                
-               <section id="detail_class_Vergunning_Bedrijfsactiviteit"><div class="header-wrapper"><h6 id="x1-1-4-1-3-bedrijfsactiviteit"><bdi class="secno">1.1.4.1.3 </bdi>   Bedrijfsactiviteit</h6><a class="self-link" href="#detail_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for Section 1.1.4.1.3"></a></div>
+               <section id="detail_class_Vergunning_Bedrijfsactiviteit"><div class="header-wrapper"><h6 id="x2-1-4-1-3-bedrijfsactiviteit"><bdi class="secno">2.1.4.1.3 </bdi>   Bedrijfsactiviteit</h6><a class="self-link" href="#detail_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for Section 2.1.4.1.3"></a></div>
                   <div class="deepheader" id="detail_association_Vergunning_Bedrijfsactiviteit_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Bedrijfsactiviteit">Bedrijfsactiviteit</a> wordt verricht op</h7>
                      
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>wordt verricht op</td></tr><tr><th>Gerelateerd objecttype</th><td>
@@ -1709,7 +1764,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_Vergunning_Bedrijfsinstallatie"><div class="header-wrapper"><h6 id="x1-1-4-1-4-bedrijfsinstallatie"><bdi class="secno">1.1.4.1.4 </bdi>   Bedrijfsinstallatie</h6><a class="self-link" href="#detail_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for Section 1.1.4.1.4"></a></div>
+               <section id="detail_class_Vergunning_Bedrijfsinstallatie"><div class="header-wrapper"><h6 id="x2-1-4-1-4-bedrijfsinstallatie"><bdi class="secno">2.1.4.1.4 </bdi>   Bedrijfsinstallatie</h6><a class="self-link" href="#detail_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for Section 2.1.4.1.4"></a></div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Bedrijfsinstallatie_type"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Bedrijfsinstallatie">Bedrijfsinstallatie</a> type</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>type</td></tr><tr><th>Formaat</th><td>
                               <a class="link" href="#detail_class_Vergunning_TypeInstallatie">Type­Installatie</a>
@@ -1730,7 +1785,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_Vergunning_Locatie"><div class="header-wrapper"><h6 id="x1-1-4-1-5-locatie"><bdi class="secno">1.1.4.1.5 </bdi>   Locatie</h6><a class="self-link" href="#detail_class_Vergunning_Locatie" aria-label="Permalink for Section 1.1.4.1.5"></a></div>
+               <section id="detail_class_Vergunning_Locatie"><div class="header-wrapper"><h6 id="x2-1-4-1-5-locatie"><bdi class="secno">2.1.4.1.5 </bdi>   Locatie</h6><a class="self-link" href="#detail_class_Vergunning_Locatie" aria-label="Permalink for Section 2.1.4.1.5"></a></div>
                   <div class="deepheader" id="detail_association_Vergunning_Locatie_geoObject"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Locatie">Locatie</a> heeft als referentie</h7>
                      
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft als referentie</td></tr><tr><th>Gerelateerd objecttype</th><td>
@@ -1738,7 +1793,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>1 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_Vergunning_Natura2000gebied"><div class="header-wrapper"><h6 id="x1-1-4-1-6-natura2000gebied"><bdi class="secno">1.1.4.1.6 </bdi>   Natura2000gebied</h6><a class="self-link" href="#detail_class_Vergunning_Natura2000gebied" aria-label="Permalink for Section 1.1.4.1.6"></a></div>
+               <section id="detail_class_Vergunning_Natura2000gebied"><div class="header-wrapper"><h6 id="x2-1-4-1-6-natura2000gebied"><bdi class="secno">2.1.4.1.6 </bdi>   Natura2000gebied</h6><a class="self-link" href="#detail_class_Vergunning_Natura2000gebied" aria-label="Permalink for Section 2.1.4.1.6"></a></div>
                   <div class="deepheader" id="detail_association_Vergunning_Natura2000gebied_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Natura2000gebied">Natura2000gebied</a> heeft impact op</h7>
                      
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
@@ -1753,8 +1808,8 @@ img.license{float:left;padding-right:5px;background:0 0}
             
             
             
-         </section></section><section id="global_package_CIM"><div class="header-wrapper"><h3 id="x1-2-view-cim"><bdi class="secno">1.2 </bdi>View   CIM</h3><a class="self-link" href="#global_package_CIM" aria-label="Permalink for Section 1.2"></a></div><section id="objecttypen-0"><div class="header-wrapper"><h4 id="x1-2-1-objecttypen"><bdi class="secno">1.2.1 </bdi>Objecttypen   </h4><a class="self-link" href="#objecttypen-0" aria-label="Permalink for Section 1.2.1"></a></div>
-            <section id="global_class_CIM_ACTIVITEIT"><div class="header-wrapper"><h5 id="x1-2-1-1-activiteit"><bdi class="secno">1.2.1.1 </bdi>   ACTIVITEIT</h5><a class="self-link" href="#global_class_CIM_ACTIVITEIT" aria-label="Permalink for Section 1.2.1.1"></a></div>
+         </section></section><section id="global_package_CIM"><div class="header-wrapper"><h3 id="x2-2-view-cim"><bdi class="secno">2.2 </bdi>View   CIM</h3><a class="self-link" href="#global_package_CIM" aria-label="Permalink for Section 2.2"></a></div><section id="objecttypen-0"><div class="header-wrapper"><h4 id="x2-2-1-objecttypen"><bdi class="secno">2.2.1 </bdi>Objecttypen   </h4><a class="self-link" href="#objecttypen-0" aria-label="Permalink for Section 2.2.1"></a></div>
+            <section id="global_class_CIM_ACTIVITEIT"><div class="header-wrapper"><h5 id="x2-2-1-1-activiteit"><bdi class="secno">2.2.1.1 </bdi>   ACTIVITEIT</h5><a class="self-link" href="#global_class_CIM_ACTIVITEIT" aria-label="Permalink for Section 2.2.1.1"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>ACTIVITEIT</td></tr><tr><th>Herkomst</th><td>
                         CIMOW
                      </td></tr><tr><th>Definitie</th><td>
@@ -1820,7 +1875,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_ACTIVITEITUITVOERING"><div class="header-wrapper"><h5 id="x1-2-1-2-activiteituitvoering"><bdi class="secno">1.2.1.2 </bdi>   ACTIVITEITUITVOERING</h5><a class="self-link" href="#global_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for Section 1.2.1.2"></a></div>
+            <section id="global_class_CIM_ACTIVITEITUITVOERING"><div class="header-wrapper"><h5 id="x2-2-1-2-activiteituitvoering"><bdi class="secno">2.2.1.2 </bdi>   ACTIVITEITUITVOERING</h5><a class="self-link" href="#global_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for Section 2.2.1.2"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>ACTIVITEITUITVOERING</td></tr><tr><th>Herkomst</th><td>
                         IBP VTH
                      </td></tr><tr><th>Definitie</th><td>
@@ -1943,7 +1998,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><div class="header-wrapper"><h5 id="x1-2-1-3-algemeen-verbindend-voorschrift"><bdi class="secno">1.2.1.3 </bdi>   ALGEMEEN VERBINDEND VOORSCHRIFT</h5><a class="self-link" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for Section 1.2.1.3"></a></div>
+            <section id="global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><div class="header-wrapper"><h5 id="x2-2-1-3-algemeen-verbindend-voorschrift"><bdi class="secno">2.2.1.3 </bdi>   ALGEMEEN VERBINDEND VOORSCHRIFT</h5><a class="self-link" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for Section 2.2.1.3"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>ALGEMEEN VERBINDEND VOORSCHRIFT</td></tr><tr><th>Herkomst</th><td>
                         AADV
                      </td></tr><tr><th>Definitie</th><td>
@@ -2012,7 +2067,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_BETROKKENE"><div class="header-wrapper"><h5 id="x1-2-1-4-betrokkene"><bdi class="secno">1.2.1.4 </bdi>   BETROKKENE</h5><a class="self-link" href="#global_class_CIM_BETROKKENE" aria-label="Permalink for Section 1.2.1.4"></a></div>
+            <section id="global_class_CIM_BETROKKENE"><div class="header-wrapper"><h5 id="x2-2-1-4-betrokkene"><bdi class="secno">2.2.1.4 </bdi>   BETROKKENE</h5><a class="self-link" href="#global_class_CIM_BETROKKENE" aria-label="Permalink for Section 2.2.1.4"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>BETROKKENE</td></tr><tr><th>Herkomst</th><td>
                         Riha
                      </td></tr><tr><th>Definitie</th><td>
@@ -2087,7 +2142,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td>0 .. 1</td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_GEOOBJECT"><div class="header-wrapper"><h5 id="x1-2-1-5-geo-object"><bdi class="secno">1.2.1.5 </bdi>   GEO-OBJECT</h5><a class="self-link" href="#global_class_CIM_GEOOBJECT" aria-label="Permalink for Section 1.2.1.5"></a></div>
+            <section id="global_class_CIM_GEOOBJECT"><div class="header-wrapper"><h5 id="x2-2-1-5-geo-object"><bdi class="secno">2.2.1.5 </bdi>   GEO-OBJECT</h5><a class="self-link" href="#global_class_CIM_GEOOBJECT" aria-label="Permalink for Section 2.2.1.5"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>GEO-OBJECT</td></tr><tr><th>Herkomst</th><td>
                         NEN3610
                      </td></tr><tr><th>Definitie</th><td>
@@ -2112,7 +2167,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td>1</td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_OVERWEGING"><div class="header-wrapper"><h5 id="x1-2-1-6-overweging"><bdi class="secno">1.2.1.6 </bdi>   OVERWEGING</h5><a class="self-link" href="#global_class_CIM_OVERWEGING" aria-label="Permalink for Section 1.2.1.6"></a></div>
+            <section id="global_class_CIM_OVERWEGING"><div class="header-wrapper"><h5 id="x2-2-1-6-overweging"><bdi class="secno">2.2.1.6 </bdi>   OVERWEGING</h5><a class="self-link" href="#global_class_CIM_OVERWEGING" aria-label="Permalink for Section 2.2.1.6"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>OVERWEGING</td></tr><tr><th>Herkomst</th><td>
                         AADV
                      </td></tr><tr><th>Definitie</th><td>
@@ -2172,7 +2227,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_SPECIFIEKVOORSCHRIFT"><div class="header-wrapper"><h5 id="x1-2-1-7-specifiek-voorschrift"><bdi class="secno">1.2.1.7 </bdi>   SPECIFIEK VOORSCHRIFT</h5><a class="self-link" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for Section 1.2.1.7"></a></div>
+            <section id="global_class_CIM_SPECIFIEKVOORSCHRIFT"><div class="header-wrapper"><h5 id="x2-2-1-7-specifiek-voorschrift"><bdi class="secno">2.2.1.7 </bdi>   SPECIFIEK VOORSCHRIFT</h5><a class="self-link" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for Section 2.2.1.7"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>SPECIFIEK VOORSCHRIFT</td></tr><tr><th>Herkomst</th><td>
                         IBP VTH
                      </td></tr><tr><th>Definitie</th><td>
@@ -2251,7 +2306,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_TOESTEMMING"><div class="header-wrapper"><h5 id="x1-2-1-8-toestemming"><bdi class="secno">1.2.1.8 </bdi>   TOESTEMMING</h5><a class="self-link" href="#global_class_CIM_TOESTEMMING" aria-label="Permalink for Section 1.2.1.8"></a></div>
+            <section id="global_class_CIM_TOESTEMMING"><div class="header-wrapper"><h5 id="x2-2-1-8-toestemming"><bdi class="secno">2.2.1.8 </bdi>   TOESTEMMING</h5><a class="self-link" href="#global_class_CIM_TOESTEMMING" aria-label="Permalink for Section 2.2.1.8"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>TOESTEMMING</td></tr><tr><th>Herkomst</th><td>
                         IBP VTH
                      </td></tr><tr><th>Definitie</th><td>
@@ -2360,7 +2415,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_VESTIGING"><div class="header-wrapper"><h5 id="x1-2-1-9-vestiging"><bdi class="secno">1.2.1.9 </bdi>   VESTIGING</h5><a class="self-link" href="#global_class_CIM_VESTIGING" aria-label="Permalink for Section 1.2.1.9"></a></div>
+            <section id="global_class_CIM_VESTIGING"><div class="header-wrapper"><h5 id="x2-2-1-9-vestiging"><bdi class="secno">2.2.1.9 </bdi>   VESTIGING</h5><a class="self-link" href="#global_class_CIM_VESTIGING" aria-label="Permalink for Section 2.2.1.9"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>VESTIGING</td></tr><tr><th>Herkomst</th><td>
                         HR
                      </td></tr><tr><th>Definitie</th><td>
@@ -2432,7 +2487,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td></tr></tbody></table>
                
             </section>
-            <section id="global_class_CIM_VTHOBJECT"><div class="header-wrapper"><h5 id="x1-2-1-10-vth-object"><bdi class="secno">1.2.1.10 </bdi>   VTH-OBJECT</h5><a class="self-link" href="#global_class_CIM_VTHOBJECT" aria-label="Permalink for Section 1.2.1.10"></a></div>
+            <section id="global_class_CIM_VTHOBJECT"><div class="header-wrapper"><h5 id="x2-2-1-10-vth-object"><bdi class="secno">2.2.1.10 </bdi>   VTH-OBJECT</h5><a class="self-link" href="#global_class_CIM_VTHOBJECT" aria-label="Permalink for Section 2.2.1.10"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>VTH-OBJECT</td></tr><tr><th>Herkomst</th><td>
                         IBP VTH
                      </td></tr><tr><th>Definitie</th><td>
@@ -2517,8 +2572,8 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td></td></tr></tbody></table>
                
             </section>
-         </section><section id="referentielijsten"><div class="header-wrapper"><h4 id="x1-2-2-referentielijsten"><bdi class="secno">1.2.2 </bdi>Referentielijsten   </h4><a class="self-link" href="#referentielijsten" aria-label="Permalink for Section 1.2.2"></a></div>
-            <section id="global_class_CIM_TypeVTHobject"><div class="header-wrapper"><h5 id="x1-2-2-1-referentielijst-type-vth-object"><bdi class="secno">1.2.2.1 </bdi>Referentielijst   Type VTH-object</h5><a class="self-link" href="#global_class_CIM_TypeVTHobject" aria-label="Permalink for Section 1.2.2.1"></a></div>
+         </section><section id="referentielijsten"><div class="header-wrapper"><h4 id="x2-2-2-referentielijsten"><bdi class="secno">2.2.2 </bdi>Referentielijsten   </h4><a class="self-link" href="#referentielijsten" aria-label="Permalink for Section 2.2.2"></a></div>
+            <section id="global_class_CIM_TypeVTHobject"><div class="header-wrapper"><h5 id="x2-2-2-1-referentielijst-type-vth-object"><bdi class="secno">2.2.2.1 </bdi>Referentielijst   Type VTH-object</h5><a class="self-link" href="#global_class_CIM_TypeVTHobject" aria-label="Permalink for Section 2.2.2.1"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Type VTH-object</td></tr><tr><th>Herkomst</th><td>
                         Digi­VTH
                      </td></tr><tr><th>Definitie</th><td>
@@ -2534,7 +2589,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                               <p>- het subtype: een meer specifieke aard binnen het hoofddtype, zoals 'Seveso' en 'naftakraker'. </p>
                            
                      </td></tr></tbody></table>
-               <section id="overzicht-referentie-elementen"><div class="header-wrapper"><h6 id="x1-2-2-1-1-overzicht-referentie-elementen"><bdi class="secno">1.2.2.1.1 </bdi>Overzicht referentie elementen   </h6><a class="self-link" href="#overzicht-referentie-elementen" aria-label="Permalink for Section 1.2.2.1.1"></a></div>
+               <section id="overzicht-referentie-elementen"><div class="header-wrapper"><h6 id="x2-2-2-1-1-overzicht-referentie-elementen"><bdi class="secno">2.2.2.1.1 </bdi>Overzicht referentie elementen   </h6><a class="self-link" href="#overzicht-referentie-elementen" aria-label="Permalink for Section 2.2.2.1.1"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Referentie element</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            Naam hoofdtype
                         </td><td>
@@ -2574,8 +2629,8 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td>0 .. 1</td></tr></tbody></table>
                </section>
             </section>
-         </section><section id="gegevensgroeptypen"><div class="header-wrapper"><h4 id="x1-2-3-gegevensgroeptypen"><bdi class="secno">1.2.3 </bdi>Gegevensgroeptypen   </h4><a class="self-link" href="#gegevensgroeptypen" aria-label="Permalink for Section 1.2.3"></a></div>
-            <section id="global_class_CIM_Adres"><div class="header-wrapper"><h5 id="x1-2-3-1-gegevensgroep-adres"><bdi class="secno">1.2.3.1 </bdi>Gegevensgroep   Adres</h5><a class="self-link" href="#global_class_CIM_Adres" aria-label="Permalink for Section 1.2.3.1"></a></div>
+         </section><section id="gegevensgroeptypen"><div class="header-wrapper"><h4 id="x2-2-3-gegevensgroeptypen"><bdi class="secno">2.2.3 </bdi>Gegevensgroeptypen   </h4><a class="self-link" href="#gegevensgroeptypen" aria-label="Permalink for Section 2.2.3"></a></div>
+            <section id="global_class_CIM_Adres"><div class="header-wrapper"><h5 id="x2-2-3-1-gegevensgroep-adres"><bdi class="secno">2.2.3.1 </bdi>Gegevensgroep   Adres</h5><a class="self-link" href="#global_class_CIM_Adres" aria-label="Permalink for Section 2.2.3.1"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Adres</td></tr><tr><th>Datum opname</th><td>
                         12-6-2025
                      </td></tr></tbody></table>
@@ -2619,8 +2674,8 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td>0 .. 1</td></tr></tbody></table>
                
             </section>
-         </section><section id="gestructureerde-datatypen"><div class="header-wrapper"><h4 id="x1-2-4-gestructureerde-datatypen"><bdi class="secno">1.2.4 </bdi>Gestructureerde datatypen   </h4><a class="self-link" href="#gestructureerde-datatypen" aria-label="Permalink for Section 1.2.4"></a></div>
-            <section id="global_class_CIM_NEN3610ID"><div class="header-wrapper"><h5 id="x1-2-4-1-gestructureerd-datatype-nen3610id"><bdi class="secno">1.2.4.1 </bdi>Gestructureerd datatype   NEN3610ID</h5><a class="self-link" href="#global_class_CIM_NEN3610ID" aria-label="Permalink for Section 1.2.4.1"></a></div>
+         </section><section id="gestructureerde-datatypen"><div class="header-wrapper"><h4 id="x2-2-4-gestructureerde-datatypen"><bdi class="secno">2.2.4 </bdi>Gestructureerde datatypen   </h4><a class="self-link" href="#gestructureerde-datatypen" aria-label="Permalink for Section 2.2.4"></a></div>
+            <section id="global_class_CIM_NEN3610ID"><div class="header-wrapper"><h5 id="x2-2-4-1-gestructureerd-datatype-nen3610id"><bdi class="secno">2.2.4.1 </bdi>Gestructureerd datatype   NEN3610ID</h5><a class="self-link" href="#global_class_CIM_NEN3610ID" aria-label="Permalink for Section 2.2.4.1"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>NEN3610ID</td></tr><tr><th>Herkomst</th><td>
                         NEN3610
                      </td></tr><tr><th>Definitie</th><td>
@@ -2630,7 +2685,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                      </td></tr><tr><th>Datum opname</th><td>
                         12-6-2025
                      </td></tr></tbody></table>
-               <section id="overzicht-data-elementen"><div class="header-wrapper"><h6 id="x1-2-4-1-1-overzicht-data-elementen"><bdi class="secno">1.2.4.1.1 </bdi>Overzicht data elementen   </h6><a class="self-link" href="#overzicht-data-elementen" aria-label="Permalink for Section 1.2.4.1.1"></a></div>
+               <section id="overzicht-data-elementen"><div class="header-wrapper"><h6 id="x2-2-4-1-1-overzicht-data-elementen"><bdi class="secno">2.2.4.1.1 </bdi>Overzicht data elementen   </h6><a class="self-link" href="#overzicht-data-elementen" aria-label="Permalink for Section 2.2.4.1.1"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Data element</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_NEN3610ID_namespace">namespace</a>
                         </td><td>
@@ -2644,9 +2699,9 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </td><td>1</td></tr></tbody></table>
                </section>
             </section>
-         </section><section id="attribuut-en-relatiesoort-details-0"><div class="header-wrapper"><h4 id="x1-2-5-attribuut-en-relatiesoort-details"><bdi class="secno">1.2.5 </bdi>Attribuut- en relatiesoort details  </h4><a class="self-link" href="#attribuut-en-relatiesoort-details-0" aria-label="Permalink for Section 1.2.5"></a></div>
-            <section id="objecttype-details-0"><div class="header-wrapper"><h5 id="x1-2-5-1-objecttype-details"><bdi class="secno">1.2.5.1 </bdi>Objecttype details  </h5><a class="self-link" href="#objecttype-details-0" aria-label="Permalink for Section 1.2.5.1"></a></div>
-               <section id="detail_class_CIM_ACTIVITEIT"><div class="header-wrapper"><h6 id="x1-2-5-1-1-activiteit"><bdi class="secno">1.2.5.1.1 </bdi>   ACTIVITEIT</h6><a class="self-link" href="#detail_class_CIM_ACTIVITEIT" aria-label="Permalink for Section 1.2.5.1.1"></a></div>
+         </section><section id="attribuut-en-relatiesoort-details-0"><div class="header-wrapper"><h4 id="x2-2-5-attribuut-en-relatiesoort-details"><bdi class="secno">2.2.5 </bdi>Attribuut- en relatiesoort details  </h4><a class="self-link" href="#attribuut-en-relatiesoort-details-0" aria-label="Permalink for Section 2.2.5"></a></div>
+            <section id="objecttype-details-0"><div class="header-wrapper"><h5 id="x2-2-5-1-objecttype-details"><bdi class="secno">2.2.5.1 </bdi>Objecttype details  </h5><a class="self-link" href="#objecttype-details-0" aria-label="Permalink for Section 2.2.5.1"></a></div>
+               <section id="detail_class_CIM_ACTIVITEIT"><div class="header-wrapper"><h6 id="x2-2-5-1-1-activiteit"><bdi class="secno">2.2.5.1.1 </bdi>   ACTIVITEIT</h6><a class="self-link" href="#detail_class_CIM_ACTIVITEIT" aria-label="Permalink for Section 2.2.5.1.1"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_ACTIVITEIT_Activiteitidentificatie"><h7>Attribuutsoort details  <a href="#global_class_CIM_ACTIVITEIT">ACTIVITEIT</a> Activiteit-identificatie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Activiteit-identificatie</td></tr><tr><th>Herkomst</th><td>
                               CIMOW
@@ -2730,7 +2785,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>1 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_ACTIVITEITUITVOERING"><div class="header-wrapper"><h6 id="x1-2-5-1-2-activiteituitvoering"><bdi class="secno">1.2.5.1.2 </bdi>   ACTIVITEITUITVOERING</h6><a class="self-link" href="#detail_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for Section 1.2.5.1.2"></a></div>
+               <section id="detail_class_CIM_ACTIVITEITUITVOERING"><div class="header-wrapper"><h6 id="x2-2-5-1-2-activiteituitvoering"><bdi class="secno">2.2.5.1.2 </bdi>   ACTIVITEITUITVOERING</h6><a class="self-link" href="#detail_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for Section 2.2.5.1.2"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_ACTIVITEITUITVOERING_Activiteituitvoeringidentificatie"><h7>Attribuutsoort details  <a href="#global_class_CIM_ACTIVITEITUITVOERING">ACTIVITEITUITVOERING</a> Activiteituitvoering-identificatie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Activiteituitvoering-identificatie</td></tr><tr><th>Herkomst</th><td>
                               IBP VTH
@@ -2897,7 +2952,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><div class="header-wrapper"><h6 id="x1-2-5-1-3-algemeen-verbindend-voorschrift"><bdi class="secno">1.2.5.1.3 </bdi>   ALGEMEEN VERBINDEND VOORSCHRIFT</h6><a class="self-link" href="#detail_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for Section 1.2.5.1.3"></a></div>
+               <section id="detail_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><div class="header-wrapper"><h6 id="x2-2-5-1-3-algemeen-verbindend-voorschrift"><bdi class="secno">2.2.5.1.3 </bdi>   ALGEMEEN VERBINDEND VOORSCHRIFT</h6><a class="self-link" href="#detail_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for Section 2.2.5.1.3"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_ALGEMEENVERBINDENDVOORSCHRIFT_Regeltekstidentificatie"><h7>Attribuutsoort details  <a href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT">ALGEMEEN VERBINDEND VOORSCHRIFT</a> Regeltekstidentificatie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Regeltekstidentificatie</td></tr><tr><th>Herkomst</th><td>
                               CIMOW
@@ -3020,7 +3075,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>1 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_BETROKKENE"><div class="header-wrapper"><h6 id="x1-2-5-1-4-betrokkene"><bdi class="secno">1.2.5.1.4 </bdi>   BETROKKENE</h6><a class="self-link" href="#detail_class_CIM_BETROKKENE" aria-label="Permalink for Section 1.2.5.1.4"></a></div>
+               <section id="detail_class_CIM_BETROKKENE"><div class="header-wrapper"><h6 id="x2-2-5-1-4-betrokkene"><bdi class="secno">2.2.5.1.4 </bdi>   BETROKKENE</h6><a class="self-link" href="#detail_class_CIM_BETROKKENE" aria-label="Permalink for Section 2.2.5.1.4"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_BETROKKENE_Adresaanduidingsoort"><h7>Attribuutsoort details  <a href="#global_class_CIM_BETROKKENE">BETROKKENE</a> Adresaanduidingsoort</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Adresaanduidingsoort</td></tr><tr><th>Herkomst</th><td>
                               Digi­VTH
@@ -3062,7 +3117,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Indicatie materiële historie</th><td>Nee</td></tr><tr><th>Indicatie formele historie</th><td>Nee</td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie authentiek</th><td>Landelijk kerngegeven</td></tr><tr><th>Indicatie classificerend</th><td>Nee</td></tr><tr><th>Mogelijk geen waarde</th><td>Nee</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_GEOOBJECT"><div class="header-wrapper"><h6 id="x1-2-5-1-5-geo-object"><bdi class="secno">1.2.5.1.5 </bdi>   GEO-OBJECT</h6><a class="self-link" href="#detail_class_CIM_GEOOBJECT" aria-label="Permalink for Section 1.2.5.1.5"></a></div>
+               <section id="detail_class_CIM_GEOOBJECT"><div class="header-wrapper"><h6 id="x2-2-5-1-5-geo-object"><bdi class="secno">2.2.5.1.5 </bdi>   GEO-OBJECT</h6><a class="self-link" href="#detail_class_CIM_GEOOBJECT" aria-label="Permalink for Section 2.2.5.1.5"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_GEOOBJECT_Geometrie"><h7>Attribuutsoort details  <a href="#global_class_CIM_GEOOBJECT">GEO-OBJECT</a> Geometrie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Geometrie</td></tr><tr><th>Herkomst</th><td>
                               RIHa
@@ -3086,7 +3141,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Indicatie classificerend</th><td>Nee</td></tr><tr><th>Mogelijk geen waarde</th><td>Nee</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_OVERWEGING"><div class="header-wrapper"><h6 id="x1-2-5-1-6-overweging"><bdi class="secno">1.2.5.1.6 </bdi>   OVERWEGING</h6><a class="self-link" href="#detail_class_CIM_OVERWEGING" aria-label="Permalink for Section 1.2.5.1.6"></a></div>
+               <section id="detail_class_CIM_OVERWEGING"><div class="header-wrapper"><h6 id="x2-2-5-1-6-overweging"><bdi class="secno">2.2.5.1.6 </bdi>   OVERWEGING</h6><a class="self-link" href="#detail_class_CIM_OVERWEGING" aria-label="Permalink for Section 2.2.5.1.6"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_OVERWEGING_Overwegingvolgnummer"><h7>Attribuutsoort details  <a href="#global_class_CIM_OVERWEGING">OVERWEGING</a> Overweging-volgnummer</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Overweging-volgnummer</td></tr><tr><th>Herkomst</th><td>
                               IBP VTH
@@ -3179,7 +3234,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_SPECIFIEKVOORSCHRIFT"><div class="header-wrapper"><h6 id="x1-2-5-1-7-specifiek-voorschrift"><bdi class="secno">1.2.5.1.7 </bdi>   SPECIFIEK VOORSCHRIFT</h6><a class="self-link" href="#detail_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for Section 1.2.5.1.7"></a></div>
+               <section id="detail_class_CIM_SPECIFIEKVOORSCHRIFT"><div class="header-wrapper"><h6 id="x2-2-5-1-7-specifiek-voorschrift"><bdi class="secno">2.2.5.1.7 </bdi>   SPECIFIEK VOORSCHRIFT</h6><a class="self-link" href="#detail_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for Section 2.2.5.1.7"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_SPECIFIEKVOORSCHRIFT_Voorschriftidentificatie"><h7>Attribuutsoort details  <a href="#global_class_CIM_SPECIFIEKVOORSCHRIFT">SPECIFIEK VOORSCHRIFT</a> Voorschriftidentificatie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Voorschriftidentificatie</td></tr><tr><th>Herkomst</th><td>
                               IBP VTH
@@ -3307,7 +3362,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_TOESTEMMING"><div class="header-wrapper"><h6 id="x1-2-5-1-8-toestemming"><bdi class="secno">1.2.5.1.8 </bdi>   TOESTEMMING</h6><a class="self-link" href="#detail_class_CIM_TOESTEMMING" aria-label="Permalink for Section 1.2.5.1.8"></a></div>
+               <section id="detail_class_CIM_TOESTEMMING"><div class="header-wrapper"><h6 id="x2-2-5-1-8-toestemming"><bdi class="secno">2.2.5.1.8 </bdi>   TOESTEMMING</h6><a class="self-link" href="#detail_class_CIM_TOESTEMMING" aria-label="Permalink for Section 2.2.5.1.8"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_TOESTEMMING_ToestemmingId"><h7>Attribuutsoort details  <a href="#global_class_CIM_TOESTEMMING">TOESTEMMING</a> Toestemming-Id</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Toestemming-Id</td></tr><tr><th>Herkomst</th><td>
                               RGBZ (afgeleid)
@@ -3513,7 +3568,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_VESTIGING"><div class="header-wrapper"><h6 id="x1-2-5-1-9-vestiging"><bdi class="secno">1.2.5.1.9 </bdi>   VESTIGING</h6><a class="self-link" href="#detail_class_CIM_VESTIGING" aria-label="Permalink for Section 1.2.5.1.9"></a></div>
+               <section id="detail_class_CIM_VESTIGING"><div class="header-wrapper"><h6 id="x2-2-5-1-9-vestiging"><bdi class="secno">2.2.5.1.9 </bdi>   VESTIGING</h6><a class="self-link" href="#detail_class_CIM_VESTIGING" aria-label="Permalink for Section 2.2.5.1.9"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_VESTIGING_Vestigingsnummer"><h7>Attribuutsoort details  <a href="#global_class_CIM_VESTIGING">VESTIGING</a> Vestigingsnummer</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Vestigingsnummer</td></tr><tr><th>Herkomst</th><td>
                               HR
@@ -3633,7 +3688,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                            </td></tr><tr><th>Indicatie materiële historie</th><td>Nee</td></tr><tr><th>Indicatie formele historie</th><td>Ja</td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie authentiek</th><td>Basisgegeven (niet-authentiek)</td></tr><tr><th>Indicatie classificerend</th><td>Nee</td></tr><tr><th>Mogelijk geen waarde</th><td>Nee</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_CIM_VTHOBJECT"><div class="header-wrapper"><h6 id="x1-2-5-1-10-vth-object"><bdi class="secno">1.2.5.1.10 </bdi>   VTH-OBJECT</h6><a class="self-link" href="#detail_class_CIM_VTHOBJECT" aria-label="Permalink for Section 1.2.5.1.10"></a></div>
+               <section id="detail_class_CIM_VTHOBJECT"><div class="header-wrapper"><h6 id="x2-2-5-1-10-vth-object"><bdi class="secno">2.2.5.1.10 </bdi>   VTH-OBJECT</h6><a class="self-link" href="#detail_class_CIM_VTHOBJECT" aria-label="Permalink for Section 2.2.5.1.10"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_VTHOBJECT_VTHobjectidentificatie"><h7>Attribuutsoort details  <a href="#global_class_CIM_VTHOBJECT">VTH-OBJECT</a> VTH-objectidentificatie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>VTH-objectidentificatie</td></tr><tr><th>Herkomst</th><td>
                               IBP VTH
@@ -3764,8 +3819,8 @@ img.license{float:left;padding-right:5px;background:0 0}
                   </div>
                </section>
             </section>
-            <section id="gegevensgroeptype-details"><div class="header-wrapper"><h5 id="x1-2-5-2-gegevensgroeptype-details"><bdi class="secno">1.2.5.2 </bdi>Gegevensgroeptype details  </h5><a class="self-link" href="#gegevensgroeptype-details" aria-label="Permalink for Section 1.2.5.2"></a></div>
-               <section id="detail_class_CIM_Adres"><div class="header-wrapper"><h6 id="x1-2-5-2-1-gegevensgroeptype-adres"><bdi class="secno">1.2.5.2.1 </bdi>Gegevensgroeptype   Adres</h6><a class="self-link" href="#detail_class_CIM_Adres" aria-label="Permalink for Section 1.2.5.2.1"></a></div>
+            <section id="gegevensgroeptype-details"><div class="header-wrapper"><h5 id="x2-2-5-2-gegevensgroeptype-details"><bdi class="secno">2.2.5.2 </bdi>Gegevensgroeptype details  </h5><a class="self-link" href="#gegevensgroeptype-details" aria-label="Permalink for Section 2.2.5.2"></a></div>
+               <section id="detail_class_CIM_Adres"><div class="header-wrapper"><h6 id="x2-2-5-2-1-gegevensgroeptype-adres"><bdi class="secno">2.2.5.2.1 </bdi>Gegevensgroeptype   Adres</h6><a class="self-link" href="#detail_class_CIM_Adres" aria-label="Permalink for Section 2.2.5.2.1"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_Adres_Adresregel1"><h7>Attribuutsoort details  <a href="#global_class_CIM_Adres">Adres</a> Adresregel 1</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Adresregel 1</td></tr><tr><th>Herkomst</th><td>
                               Digi­VTH
@@ -3881,8 +3936,8 @@ img.license{float:left;padding-right:5px;background:0 0}
             </section>
             
             
-            <section id="gestructureerde-datatypen-0"><div class="header-wrapper"><h5 id="x1-2-5-3-gestructureerde-datatypen"><bdi class="secno">1.2.5.3 </bdi>Gestructureerde datatypen  </h5><a class="self-link" href="#gestructureerde-datatypen-0" aria-label="Permalink for Section 1.2.5.3"></a></div>
-               <section id="detail_class_CIM_NEN3610ID"><div class="header-wrapper"><h6 id="x1-2-5-3-1-gestructureerd-datatype-nen3610id"><bdi class="secno">1.2.5.3.1 </bdi>Gestructureerd datatype   NEN3610ID</h6><a class="self-link" href="#detail_class_CIM_NEN3610ID" aria-label="Permalink for Section 1.2.5.3.1"></a></div>
+            <section id="gestructureerde-datatypen-0"><div class="header-wrapper"><h5 id="x2-2-5-3-gestructureerde-datatypen"><bdi class="secno">2.2.5.3 </bdi>Gestructureerde datatypen  </h5><a class="self-link" href="#gestructureerde-datatypen-0" aria-label="Permalink for Section 2.2.5.3"></a></div>
+               <section id="detail_class_CIM_NEN3610ID"><div class="header-wrapper"><h6 id="x2-2-5-3-1-gestructureerd-datatype-nen3610id"><bdi class="secno">2.2.5.3.1 </bdi>Gestructureerd datatype   NEN3610ID</h6><a class="self-link" href="#detail_class_CIM_NEN3610ID" aria-label="Permalink for Section 2.2.5.3.1"></a></div>
                   <div class="deepheader" id="detail_attribute_CIM_NEN3610ID_namespace"><h7>Data element  <a href="#global_class_CIM_NEN3610ID">NEN3610ID</a> namespace</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>namespace</td></tr><tr><th>Definitie</th><td>
                               
@@ -3904,7 +3959,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                </section>
             </section>
             
-         </section></section></section><section id="lis" class="normative"><div class="header-wrapper"><h2 id="x2-inhoud-van-waardelijsten"><bdi class="secno">2. </bdi>Inhoud van waardelijsten</h2><a class="self-link" href="#lis" aria-label="Permalink for Section 2."></a></div><section id="referentielijst-inhoud"><div class="header-wrapper"><h3 id="x2-1-referentielijst-inhoud"><bdi class="secno">2.1 </bdi>Referentielijst inhoud   </h3><a class="self-link" href="#referentielijst-inhoud" aria-label="Permalink for Section 2.1"></a></div><section id="detail_class_CIM_TypeVTHobject"><div class="header-wrapper"><h4 id="x2-1-1-referentielijst-type-vth-object"><bdi class="secno">2.1.1 </bdi>Referentielijst  Type VTH-object</h4><a class="self-link" href="#detail_class_CIM_TypeVTHobject" aria-label="Permalink for Section 2.1.1"></a></div>
+         </section></section></section><section id="lis" class="normative"><div class="header-wrapper"><h2 id="x3-inhoud-van-waardelijsten"><bdi class="secno">3. </bdi>Inhoud van waardelijsten</h2><a class="self-link" href="#lis" aria-label="Permalink for Section 3."></a></div><section id="referentielijst-inhoud"><div class="header-wrapper"><h3 id="x3-1-referentielijst-inhoud"><bdi class="secno">3.1 </bdi>Referentielijst inhoud   </h3><a class="self-link" href="#referentielijst-inhoud" aria-label="Permalink for Section 3.1"></a></div><section id="detail_class_CIM_TypeVTHobject"><div class="header-wrapper"><h4 id="x3-1-1-referentielijst-type-vth-object"><bdi class="secno">3.1.1 </bdi>Referentielijst  Type VTH-object</h4><a class="self-link" href="#detail_class_CIM_TypeVTHobject" aria-label="Permalink for Section 3.1.1"></a></div>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td>
                      
                         <p>Benaming van de aard van VTH-objecten.</p>
@@ -3926,7 +3981,7 @@ img.license{float:left;padding-right:5px;background:0 0}
                         </ol>
                      
                   </td></tr></tbody></table>
-         </section></section><section id="enumeratie-inhoud"><div class="header-wrapper"><h3 id="x2-2-enumeratie-inhoud"><bdi class="secno">2.2 </bdi>Enumeratie inhoud   </h3><a class="self-link" href="#enumeratie-inhoud" aria-label="Permalink for Section 2.2"></a></div><section id="detail_class_Vergunning_TypeInstallatie"><div class="header-wrapper"><h4 id="x2-2-1-enumeratie-details-type-installatie"><bdi class="secno">2.2.1 </bdi>Enumeratie details  Type­Installatie</h4><a class="self-link" href="#detail_class_Vergunning_TypeInstallatie" aria-label="Permalink for Section 2.2.1"></a></div>
+         </section></section><section id="enumeratie-inhoud"><div class="header-wrapper"><h3 id="x3-2-enumeratie-inhoud"><bdi class="secno">3.2 </bdi>Enumeratie inhoud   </h3><a class="self-link" href="#enumeratie-inhoud" aria-label="Permalink for Section 3.2"></a></div><section id="detail_class_Vergunning_TypeInstallatie"><div class="header-wrapper"><h4 id="x3-2-1-enumeratie-details-type-installatie"><bdi class="secno">3.2.1 </bdi>Enumeratie details  Type­Installatie</h4><a class="self-link" href="#detail_class_Vergunning_TypeInstallatie" aria-label="Permalink for Section 3.2.1"></a></div>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td></td></tr></tbody></table>
             <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>mestopslagtank</th><td></td></tr></tbody></table>
          </section></section></section>
