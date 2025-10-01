@@ -1389,6 +1389,47 @@ img.license{float:left;padding-right:5px;background:0 0}
 
 
 
+<section class="informative"><p>Toelichting op het informatiemodel (testopzet)</p>
+<p>Dit informatiemodel is ontwikkeld als proefopstelling voor het testen van de inzet van een Large Language Model (LLM) in combinatie met prompt engineering. Het doel is om te onderzoeken in hoeverre gegevens die in vergunningsdocumenten (PDF’s) zijn vastgelegd, automatisch kunnen worden omgezet naar gestructureerde data volgens een vooraf gedefinieerde informatiemodel-structuur.</p>
+<p>Het model is gebaseerd op en sluit aan bij het Conceptueel Informatiemodel Vergunningverlening, Toezicht en Handhaving (CIM VTH Flo). Het is nadrukkelijk een uitbreiding in de vorm van een domeininformatiemodel (DIM), specifiek ingericht voor deze test.</p>
+<p>Afbakening en uitgangspunten</p>
+<p>Het model is uitsluitend bedoeld als testomgeving en staat volledig los van het (domein)informatiemodel dat binnen het deskundigheidsgebied Vergunningverlening milieu (Bal + omgevingsplan) in het kader van het project Eenheid van Taal wordt ontwikkeld.</p>
+<p>Het model is niet volledig, pretendeert niet juist of volledig aan te sluiten bij de informatiebehoefte in het vakgebied, en bevat waar nodig pragmatische keuzes en vereenvoudigingen (“cherry picking”).</p>
+<p>Doel is niet om een definitief of volledig informatiemodel op te leveren, maar om de technische mogelijkheden van LLM’s bij het structureren van vergunninggegevens te verkennen.</p>
+<p>Uitgangsbronnen en inspiratie</p>
+<p>Het model bouwt voort op eerder werk, waaronder:</p>
+<p>de informatie-analyse Altijd Actuele Gestructureerde Aanvraag (AAGA),</p>
+<p>het informatiemodel Altijd Actuele Digitale Vergunning (AADV),</p>
+<p>en onderdelen uit het CIM VTH Flo.</p>
+<p>Specifiek zijn elementen uit de volgende onderdelen van CIM/AADV benut:</p>
+<p>3.2.3 Vergunning</p>
+<p>3.2.5 Locatie</p>
+<p>3.2.7 Voorschrift, bedrijfsonderdeel en locatie</p>
+<p>3.2.10 Juridische regel</p>
+<p>Daarnaast zijn uit AADVA en AAGA gegevens over emissies, eenheden, bedrijfsinstallaties, bedrijfsactiviteiten en de relatie Natura2000-gebied ↔ Locatie geselecteerd. Hierbij is bewust niet alles meegenomen: de selectie is gemaakt ten behoeve van de test.</p>
+<p>Belangrijkste uitbreidingen</p>
+<p>Het domeininformatiemodel breidt het CIM VTH Flo uit met:</p>
+<p>Entiteiten TOESTEMMING en SPECIFIEK VOORSCHRIFT,</p>
+<p>Attributen voor emissies en eenheden (omgevings- en productienormen),</p>
+<p>Gegevenstypen voor bedrijfsinstallaties en bedrijfsactiviteiten,</p>
+<p>De relatie tussen Natura2000-gebieden en Locatie.</p>
+<p>Modellering en keuzes</p>
+<p>Om aan te sluiten op het CIM VTH Flo zijn enkele aanpassingen en afwijkingen doorgevoerd ten opzichte van IM AADV:</p>
+<p>Richting van relaties is omgekeerd, bijvoorbeeld:</p>
+<p>IM AADV: Voorschrift “geldt voor” Bedrijfsactiviteit</p>
+<p>DIM: Bedrijfsactiviteit “is onderworpen aan” Voorschrift</p>
+<p>IM AADV: Voorschrift “is opgenomen in” Voorschrifttekst</p>
+<p>DIM: Voorschrifttekst “bevat” Voorschrift</p>
+<p>Relatie Locatie ↔ Geo-object is gemodelleerd op basis van het CIM VTH, i.p.v. Ruimtelijk object in IM AADV.</p>
+<p>Waar nodig zijn relaties hernoemd om conflicten met dubbele relatiebenamingen te voorkomen (bijvoorbeeld meerdere keren “geldt voor”).</p>
+<p>Technische keuzes</p>
+<p>Omdat het model door de Geonovum-tooling moet kunnen worden verwerkt, zijn enkele praktische aanpassingen gedaan in terminologie en relatiebenamingen.</p>
+<p>Verder is in de visualisatie onderscheid aangebracht:</p>
+<p>CIM VTH Flo objecttypen zijn blauw weergegeven,</p>
+<p>Domeinobjecttypen (toevoegingen voor dit testmodel) zijn geel weergegeven.</p>
+<p>Conclusie</p>
+<p>Dit informatiemodel is dus geen volledig of formeel model, maar een experimenteel hulpmiddel om inzicht te krijgen in de mogelijkheden van LLM’s bij het structureren van vergunninggegevens. De modellering is pragmatisch en testgericht, en moet vooral worden gezien als een stap in de verkenning van nieuwe technologie, niet als eindresultaat.</p>
+</section>
 
 
 
