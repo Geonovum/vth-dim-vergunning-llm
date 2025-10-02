@@ -64,7 +64,7 @@ let respecConfig = {
     ],
   // TODO: Vul de github URL in.
   //neem hier de URL van de github repository op waar het respec document in staat
-  github: "https://github.com/Geonovum/NL-ReSpec-template",
+  github: "https://github.com/Geonovum/vth-dim-vergunning-llm",
   // Create PDF and link to file in header (optional):
   // TODO: Change the filename as preferred.
   alternateFormats: [
