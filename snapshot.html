@@ -93,6 +93,12 @@ dd{margin-left:0}
 img.license{float:left;padding-right:5px;background:0 0}
 </style>
 <meta name="color-scheme" content="light">
+<meta name="description" content="Dit informatiemodel is een testopzet om te onderzoeken hoe gegevens uit
+vergunning-PDF’s met behulp van een Large Language Model (LLM) en prompt
+engineering kunnen worden omgezet naar gestructureerde data. Het model sluit aan
+op het CIM VTH Flo, bevat pragmatische uitbreidingen voor o.a. voorschriften,
+emissies en Natura2000-relaties, en is bewust beperkt en vereenvoudigd opgezet
+voor dit experiment.">
 <style>
 
   .sidelabel {
@@ -1338,7 +1344,7 @@ img.license{float:left;padding-right:5px;background:0 0}
 }</script>
 <link rel="stylesheet" href="https://tools.geostandaarden.nl/respec/style/base.css"></head>
 
-<body class="h-entry informative"><div class="head">
+<body class="h-entry informative toc-inline"><div class="head">
     <a class="logo" href="https://www.geonovum.nl/geo-standaarden"><img alt="Geonovum" height="67" id="Geonovum" src="https://tools.geostandaarden.nl/respec/style/logos/Geonovum.svg" width="132">
   </a> <h1 id="title" class="title">DIM Vergunning LLM</h1>
     
@@ -1386,7 +1392,14 @@ img.license{float:left;padding-right:5px;background:0 0}
           </p>
     <hr title="Separator for header">
   </div>
-
+<section id="abstract" class="introductory"><h2>Samenvatting</h2><p>Dit informatiemodel is een testopzet om te onderzoeken hoe gegevens uit
+vergunning-PDF’s met behulp van een Large Language Model (LLM) en prompt
+engineering kunnen worden omgezet naar gestructureerde data. Het model sluit aan
+op het CIM VTH Flo, bevat pragmatische uitbreidingen voor o.a. voorschriften,
+emissies en Natura2000-relaties, en is bewust beperkt en vereenvoudigd opgezet
+voor dit experiment.</p>
+</section>
+<section id="sotd" class="introductory"><h2>Status van dit document</h2><p>Dit is een werkversie die op elk moment kan worden gewijzigd, verwijderd of vervangen door andere documenten. Het is geen stabiel document.</p></section><nav id="toc"><h2 class="introductory" id="inhoudsopgave">Inhoudsopgave</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Samenvatting</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status van dit document</a></li><li class="tocline"><a class="tocxref" href="#toelichting-op-het-informatiemodel-testopzet"><bdi class="secno">1. </bdi>Toelichting op het informatiemodel (testopzet)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#afbakening-en-uitgangspunten"><bdi class="secno">1.1 </bdi>Afbakening en uitgangspunten</a></li><li class="tocline"><a class="tocxref" href="#uitgangsbronnen-en-inspiratie"><bdi class="secno">1.2 </bdi>Uitgangsbronnen en inspiratie</a></li><li class="tocline"><a class="tocxref" href="#belangrijkste-uitbreidingen"><bdi class="secno">1.3 </bdi>Belangrijkste uitbreidingen</a></li><li class="tocline"><a class="tocxref" href="#modellering-en-keuzes"><bdi class="secno">1.4 </bdi>Modellering en keuzes</a></li><li class="tocline"><a class="tocxref" href="#technische-keuzes"><bdi class="secno">1.5 </bdi>Technische keuzes</a></li><li class="tocline"><a class="tocxref" href="#conclusie"><bdi class="secno">1.6 </bdi>Conclusie</a></li></ol></li><li class="tocline"><a class="tocxref" href="#cat"><bdi class="secno">2. </bdi>Gegevensdefinitie</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_package_Vergunning"><bdi class="secno">2.1 </bdi>Domein   Vergunning</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><bdi class="secno">2.1.1 </bdi>   Vergunning selectie- overzicht</a></li><li class="tocline"><a class="tocxref" href="#EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><bdi class="secno">2.1.2 </bdi>   Vergunning - overzicht</a></li><li class="tocline"><a class="tocxref" href="#objecttypen"><bdi class="secno">2.1.3 </bdi>Objecttypen   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Voorschrifttekst"><bdi class="secno">2.1.3.1 </bdi>   Voorschrifttekst</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Juridischeregel"><bdi class="secno">2.1.3.2 </bdi>   Juridische regel</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Norm"><bdi class="secno">2.1.3.3 </bdi>   Norm</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#EAID_04ED0E22_CD23_40e0_BC62_136339468436"><bdi class="secno">2.1.3.3.1 </bdi>   Norm - detail</a></li></ol></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Omgevingsnorm"><bdi class="secno">2.1.3.4 </bdi>   Omgevingsnorm</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2"><bdi class="secno">2.1.3.4.1 </bdi>   Omgevingsnorm - detail</a></li></ol></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Productienorm"><bdi class="secno">2.1.3.5 </bdi>   Productienorm</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8"><bdi class="secno">2.1.3.5.1 </bdi>   Productienorm - detail</a></li></ol></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Bedrijfsactiviteit"><bdi class="secno">2.1.3.6 </bdi>   Bedrijfsactiviteit</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Bedrijfsinstallatie"><bdi class="secno">2.1.3.7 </bdi>   Bedrijfsinstallatie</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Locatie"><bdi class="secno">2.1.3.8 </bdi>   Locatie</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Natura2000gebied"><bdi class="secno">2.1.3.9 </bdi>   Natura2000gebied</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Geluidimmissiepunt"><bdi class="secno">2.1.3.10 </bdi>   Geluidimmissiepunt</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_GeurgevoeligObject"><bdi class="secno">2.1.3.11 </bdi>   Geurgevoelig­Object</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_PlaatsgebondenRisicocontour"><bdi class="secno">2.1.3.12 </bdi>   Plaatsgebonden­Risicocontour</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Brandaandachtgebiedcontour"><bdi class="secno">2.1.3.13 </bdi>   Brandaandachtgebiedcontour</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Explosieaandachtgebiedcontour"><bdi class="secno">2.1.3.14 </bdi>   Explosieaandachtgebiedcontour</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Gifwolkaandachtgebiedcontour"><bdi class="secno">2.1.3.15 </bdi>   Gifwolkaandachtgebiedcontour</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gegevensgroeptypen"><bdi class="secno">2.1.4 </bdi>Gegevensgroeptypen   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Tijdvak"><bdi class="secno">2.1.4.1 </bdi>Gegevensgroep   Tijdvak</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Normwaarde"><bdi class="secno">2.1.4.2 </bdi>Gegevensgroep   Normwaarde</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Parameter"><bdi class="secno">2.1.4.3 </bdi>Gegevensgroep   Parameter</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0"><bdi class="secno">2.1.4.3.1 </bdi>   Parameter - detail</a></li></ol></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Tijdsduur"><bdi class="secno">2.1.4.4 </bdi>Gegevensgroep   Tijdsduur</a></li><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_Waarde"><bdi class="secno">2.1.4.5 </bdi>Gegevensgroep   Waarde</a></li></ol></li><li class="tocline"><a class="tocxref" href="#enumeraties"><bdi class="secno">2.1.5 </bdi>Enumeraties   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_Vergunning_TypeInstallatie"><bdi class="secno">2.1.5.1 </bdi>Enumeratie   Type­Installatie</a></li></ol></li><li class="tocline"><a class="tocxref" href="#attribuut-en-relatiesoort-details"><bdi class="secno">2.1.6 </bdi>Attribuut- en relatiesoort details  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#objecttype-details"><bdi class="secno">2.1.6.1 </bdi>Objecttype details  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Voorschrifttekst"><bdi class="secno">2.1.6.1.1 </bdi>   Voorschrifttekst</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Juridischeregel"><bdi class="secno">2.1.6.1.2 </bdi>   Juridische regel</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Norm"><bdi class="secno">2.1.6.1.3 </bdi>   Norm</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Omgevingsnorm"><bdi class="secno">2.1.6.1.4 </bdi>   Omgevingsnorm</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Productienorm"><bdi class="secno">2.1.6.1.5 </bdi>   Productienorm</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Bedrijfsactiviteit"><bdi class="secno">2.1.6.1.6 </bdi>   Bedrijfsactiviteit</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Bedrijfsinstallatie"><bdi class="secno">2.1.6.1.7 </bdi>   Bedrijfsinstallatie</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Locatie"><bdi class="secno">2.1.6.1.8 </bdi>   Locatie</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Natura2000gebied"><bdi class="secno">2.1.6.1.9 </bdi>   Natura2000gebied</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Geluidimmissiepunt"><bdi class="secno">2.1.6.1.10 </bdi>   Geluidimmissiepunt</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_GeurgevoeligObject"><bdi class="secno">2.1.6.1.11 </bdi>   Geurgevoelig­Object</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_PlaatsgebondenRisicocontour"><bdi class="secno">2.1.6.1.12 </bdi>   Plaatsgebonden­Risicocontour</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Brandaandachtgebiedcontour"><bdi class="secno">2.1.6.1.13 </bdi>   Brandaandachtgebiedcontour</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Explosieaandachtgebiedcontour"><bdi class="secno">2.1.6.1.14 </bdi>   Explosieaandachtgebiedcontour</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Gifwolkaandachtgebiedcontour"><bdi class="secno">2.1.6.1.15 </bdi>   Gifwolkaandachtgebiedcontour</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gegevensgroeptype-details"><bdi class="secno">2.1.6.2 </bdi>Gegevensgroeptype details  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Tijdvak"><bdi class="secno">2.1.6.2.1 </bdi>Gegevensgroeptype   Tijdvak</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Normwaarde"><bdi class="secno">2.1.6.2.2 </bdi>Gegevensgroeptype   Normwaarde</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Parameter"><bdi class="secno">2.1.6.2.3 </bdi>Gegevensgroeptype   Parameter</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Tijdsduur"><bdi class="secno">2.1.6.2.4 </bdi>Gegevensgroeptype   Tijdsduur</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Waarde"><bdi class="secno">2.1.6.2.5 </bdi>Gegevensgroeptype   Waarde</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#global_package_CIM"><bdi class="secno">2.2 </bdi>View   CIM</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#objecttypen-0"><bdi class="secno">2.2.1 </bdi>Objecttypen   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_CIM_ACTIVITEIT"><bdi class="secno">2.2.1.1 </bdi>   ACTIVITEIT</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_ACTIVITEITUITVOERING"><bdi class="secno">2.2.1.2 </bdi>   ACTIVITEITUITVOERING</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><bdi class="secno">2.2.1.3 </bdi>   ALGEMEEN VERBINDEND VOORSCHRIFT</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_BETROKKENE"><bdi class="secno">2.2.1.4 </bdi>   BETROKKENE</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_GEOOBJECT"><bdi class="secno">2.2.1.5 </bdi>   GEO-OBJECT</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_OVERWEGING"><bdi class="secno">2.2.1.6 </bdi>   OVERWEGING</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"><bdi class="secno">2.2.1.7 </bdi>   SPECIFIEK VOORSCHRIFT</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_TOESTEMMING"><bdi class="secno">2.2.1.8 </bdi>   TOESTEMMING</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_VESTIGING"><bdi class="secno">2.2.1.9 </bdi>   VESTIGING</a></li><li class="tocline"><a class="tocxref" href="#global_class_CIM_VTHOBJECT"><bdi class="secno">2.2.1.10 </bdi>   VTH-OBJECT</a></li></ol></li><li class="tocline"><a class="tocxref" href="#referentielijsten"><bdi class="secno">2.2.2 </bdi>Referentielijsten   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_CIM_TypeVTHobject"><bdi class="secno">2.2.2.1 </bdi>Referentielijst   Type VTH-object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overzicht-referentie-elementen"><bdi class="secno">2.2.2.1.1 </bdi>Overzicht referentie elementen   </a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gegevensgroeptypen-0"><bdi class="secno">2.2.3 </bdi>Gegevensgroeptypen   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_CIM_Adres"><bdi class="secno">2.2.3.1 </bdi>Gegevensgroep   Adres</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gestructureerde-datatypen"><bdi class="secno">2.2.4 </bdi>Gestructureerde datatypen   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#global_class_CIM_NEN3610ID"><bdi class="secno">2.2.4.1 </bdi>Gestructureerd datatype   NEN3610ID</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overzicht-data-elementen"><bdi class="secno">2.2.4.1.1 </bdi>Overzicht data elementen   </a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#attribuut-en-relatiesoort-details-0"><bdi class="secno">2.2.5 </bdi>Attribuut- en relatiesoort details  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#objecttype-details-0"><bdi class="secno">2.2.5.1 </bdi>Objecttype details  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_CIM_ACTIVITEIT"><bdi class="secno">2.2.5.1.1 </bdi>   ACTIVITEIT</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_ACTIVITEITUITVOERING"><bdi class="secno">2.2.5.1.2 </bdi>   ACTIVITEITUITVOERING</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><bdi class="secno">2.2.5.1.3 </bdi>   ALGEMEEN VERBINDEND VOORSCHRIFT</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_BETROKKENE"><bdi class="secno">2.2.5.1.4 </bdi>   BETROKKENE</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_GEOOBJECT"><bdi class="secno">2.2.5.1.5 </bdi>   GEO-OBJECT</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_OVERWEGING"><bdi class="secno">2.2.5.1.6 </bdi>   OVERWEGING</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_SPECIFIEKVOORSCHRIFT"><bdi class="secno">2.2.5.1.7 </bdi>   SPECIFIEK VOORSCHRIFT</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_TOESTEMMING"><bdi class="secno">2.2.5.1.8 </bdi>   TOESTEMMING</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_VESTIGING"><bdi class="secno">2.2.5.1.9 </bdi>   VESTIGING</a></li><li class="tocline"><a class="tocxref" href="#detail_class_CIM_VTHOBJECT"><bdi class="secno">2.2.5.1.10 </bdi>   VTH-OBJECT</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gegevensgroeptype-details-0"><bdi class="secno">2.2.5.2 </bdi>Gegevensgroeptype details  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_CIM_Adres"><bdi class="secno">2.2.5.2.1 </bdi>Gegevensgroeptype   Adres</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gestructureerde-datatypen-0"><bdi class="secno">2.2.5.3 </bdi>Gestructureerde datatypen  </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_CIM_NEN3610ID"><bdi class="secno">2.2.5.3.1 </bdi>Gestructureerd datatype   NEN3610ID</a></li></ol></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#lis"><bdi class="secno">3. </bdi>Inhoud van waardelijsten</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#referentielijst-inhoud"><bdi class="secno">3.1 </bdi>Referentielijst inhoud   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_CIM_TypeVTHobject"><bdi class="secno">3.1.1 </bdi>Referentielijst  Type VTH-object</a></li></ol></li><li class="tocline"><a class="tocxref" href="#enumeratie-inhoud"><bdi class="secno">3.2 </bdi>Enumeratie inhoud   </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_TypeInstallatie"><bdi class="secno">3.2.1 </bdi>Enumeratie details  Type­Installatie</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Eenheid"><bdi class="secno">3.2.2 </bdi>Enumeratie details  Eenheid</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Parametersoort"><bdi class="secno">3.2.3 </bdi>Enumeratie details  Parametersoort</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Thema"><bdi class="secno">3.2.4 </bdi>Enumeratie details  Thema</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_TypeNorm"><bdi class="secno">3.2.5 </bdi>Enumeratie details  Type­Norm</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Productienormgroep"><bdi class="secno">3.2.6 </bdi>Enumeratie details  Productienormgroep</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Omgevingsnormgroep"><bdi class="secno">3.2.7 </bdi>Enumeratie details  Omgevingsnormgroep</a></li><li class="tocline"><a class="tocxref" href="#detail_class_Vergunning_Diercategorie"><bdi class="secno">3.2.8 </bdi>Enumeratie details  Diercategorie</a></li></ol></li></ol></li></ol></nav>
 
 
 <section class="informative" id="toelichting-op-het-informatiemodel-testopzet"><div class="header-wrapper"><h2 id="x1-toelichting-op-het-informatiemodel-testopzet"><bdi class="secno">1. </bdi>Toelichting op het informatiemodel (testopzet)</h2><a class="self-link" href="#toelichting-op-het-informatiemodel-testopzet" aria-label="Permalink for Section 1."></a></div><p><em>Dit onderdeel is niet normatief.</em></p>
@@ -1470,7 +1483,10 @@ relatiebenamingen te voorkomen (bijvoorbeeld meerdere keren “geldt voor”).</
 </ul>
 </section><section id="technische-keuzes"><div class="header-wrapper"><h3 id="x1-5-technische-keuzes"><bdi class="secno">1.5 </bdi>Technische keuzes</h3><a class="self-link" href="#technische-keuzes" aria-label="Permalink for Section 1.5"></a></div>
 <p>Omdat het model door de Geonovum-tooling moet kunnen worden verwerkt, zijn
-enkele praktische aanpassingen gedaan in terminologie en relatiebenamingen.</p>
+enkele praktische aanpassingen gedaan in terminologie en relatiebenamingen.
+aarnaast zijn alleen de relevante objecttypen uit het CIM VTH Flo gebruikt.
+Relaties naar overige objecttypen zijn verwijderd om de complexiteit te beperken
+en het model zonder fouten door de tooling te kunnen halen.</p>
 <p>Verder is in de visualisatie onderscheid aangebracht:</p>
 <ul>
 <li><p>CIM VTH FLo objecttypen zijn blauw weergegeven,</p>
@@ -1489,9 +1505,9 @@ nieuwe technologie, niet als eindresultaat.</p>
 
 
 
-<section id="cat" class="normative"><div class="header-wrapper"><h2 id="x2-gegevensdefinitie"><bdi class="secno">2. </bdi>Gegevensdefinitie</h2><a class="self-link" href="#cat" aria-label="Permalink for Section 2."></a></div><section id="global_package_Vergunning"><div class="header-wrapper"><h3 id="x2-1-domein-vergunning"><bdi class="secno">2.1 </bdi>Domein   Vergunning</h3><a class="self-link" href="#global_package_Vergunning" aria-label="Permalink for Section 2.1"></a></div><section id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><div class="header-wrapper"><h4 id="x2-1-1-vergunning-selectie-overzicht"><bdi class="secno">2.1.1 </bdi>   Vergunning selectie- overzicht</h4><a class="self-link" href="#EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" aria-label="Permalink for Section 2.1.1"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning-selectie-overzicht"><img id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" src="data/Images/EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C.png" usemap="#imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" alt="Diagram: Vergunning selectie- overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning-selectie-overzicht">Figuur <bdi class="figno">1</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning selectie- overzicht</span></figcaption></figure><map name="imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><area shape="rect" alt="Productienorm" coords="426,913,652,1052" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="146,902,344,1006" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="258,580,468,831" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,396,243,535" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,456,516,512" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="774,621,897,716" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="505,535,654,639" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Locatie" coords="1202,277,1373,513" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,457,1696,513" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="1066,63,1277,166" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,85,774,277" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"></map><p>
+<section id="cat" class="normative"><div class="header-wrapper"><h2 id="x2-gegevensdefinitie"><bdi class="secno">2. </bdi>Gegevensdefinitie</h2><a class="self-link" href="#cat" aria-label="Permalink for Section 2."></a></div><section id="global_package_Vergunning"><div class="header-wrapper"><h3 id="x2-1-domein-vergunning"><bdi class="secno">2.1 </bdi>Domein   Vergunning</h3><a class="self-link" href="#global_package_Vergunning" aria-label="Permalink for Section 2.1"></a></div><section id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><div class="header-wrapper"><h4 id="x2-1-1-vergunning-selectie-overzicht"><bdi class="secno">2.1.1 </bdi>   Vergunning selectie- overzicht</h4><a class="self-link" href="#EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" aria-label="Permalink for Section 2.1.1"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning-selectie-overzicht"><img id="EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" src="data/Images/EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C.png" usemap="#imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C" alt="Diagram: Vergunning selectie- overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning-selectie-overzicht">Figuur <bdi class="figno">1</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning selectie- overzicht</span></figcaption></figure><map name="imagemap-EAID_1468223A_94E3_42c6_A071_B21DDAB7AD5C"><area shape="rect" alt="Tijdvak" coords="613,751,774,872" href="#global_class_Vergunning_Tijdvak"><area shape="rect" alt="Gifwolkaandachtgebiedcontour" coords="1371,656,1553,712" href="#global_class_Vergunning_Gifwolkaandachtgebiedcontour"><area shape="rect" alt="Explosieaandachtgebiedcontour" coords="1371,587,1557,643" href="#global_class_Vergunning_Explosieaandachtgebiedcontour"><area shape="rect" alt="Brandaandachtgebiedcontour" coords="1371,517,1546,573" href="#global_class_Vergunning_Brandaandachtgebiedcontour"><area shape="rect" alt="GeurgevoeligObject" coords="1371,378,1494,434" href="#global_class_Vergunning_GeurgevoeligObject"><area shape="rect" alt="Geluidimmissiepunt" coords="1371,308,1494,364" href="#global_class_Vergunning_Geluidimmissiepunt"><area shape="rect" alt="PlaatsgebondenRisicocontour" coords="1371,448,1543,504" href="#global_class_Vergunning_PlaatsgebondenRisicocontour"><area shape="rect" alt="Productienorm" coords="426,891,685,1030" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="146,880,344,984" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="258,558,468,809" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,374,243,513" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,434,516,490" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="774,632,897,736" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="505,513,654,658" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Locatie" coords="1006,261,1175,692" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1371,239,1494,295" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="985,63,1197,166" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,63,774,255" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"></map><p>
                         </p><p></p>
-                     <p></p></div></section><section id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><div class="header-wrapper"><h4 id="x2-1-2-vergunning-overzicht"><bdi class="secno">2.1.2 </bdi>   Vergunning - overzicht</h4><a class="self-link" href="#EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" aria-label="Permalink for Section 2.1.2"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning"><img id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" src="data/Images/EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D.png" usemap="#imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" alt="Diagram: Vergunning - overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning">Figuur <bdi class="figno">2</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning</span></figcaption></figure><map name="imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><area shape="rect" alt="TypeInstallatie" coords="528,1485,651,1588" href="#global_class_Vergunning_TypeInstallatie"><area shape="rect" alt="VESTIGING" coords="293,59,543,269" href="#global_class_CIM_VESTIGING"><area shape="rect" alt="BETROKKENE" coords="716,83,970,246" href="#global_class_CIM_BETROKKENE"><area shape="rect" alt="Productienorm" coords="371,1505,598,1644" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="203,1505,401,1609" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="259,1351,469,1602" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,1164,243,1303" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,1206,516,1262" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="759,1389,882,1485" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="516,1303,665,1407" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="Betreffende (afval)stof" coords="1381,1632,1504,1728" href="#global_class_Vergunning_Betreffendeafvalstof"><area shape="rect" alt="ALGEMEEN VERBINDEND VOORSCHRIFT" coords="2126,382,2393,592" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><area shape="rect" alt="Locatie" coords="1202,1045,1373,1281" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,1225,1696,1281" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="2155,793,2366,897" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="ACTIVITEITUITVOERING" coords="1164,400,1481,574" href="#global_class_CIM_ACTIVITEITUITVOERING"><area shape="rect" alt="ACTIVITEIT" coords="1591,409,1853,566" href="#global_class_CIM_ACTIVITEIT"><area shape="rect" alt="VTH-OBJECT" coords="1678,757,1928,932" href="#global_class_CIM_VTHOBJECT"><area shape="rect" alt="OVERWEGING" coords="903,610,1148,785" href="#global_class_CIM_OVERWEGING"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,853,774,1045" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"><area shape="rect" alt="TOESTEMMING" coords="536,364,774,610" href="#global_class_CIM_TOESTEMMING"></map><p>
+                     <p></p></div></section><section id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><div class="header-wrapper"><h4 id="x2-1-2-vergunning-overzicht"><bdi class="secno">2.1.2 </bdi>   Vergunning - overzicht</h4><a class="self-link" href="#EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" aria-label="Permalink for Section 2.1.2"></a></div><div class="imageinfo overview"><figure class="uml-diagram" id="fig-diagram-vergunning"><img id="EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" src="data/Images/EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D.png" usemap="#imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D" alt="Diagram: Vergunning - overzicht"><figcaption><a class="self-link" href="#fig-diagram-vergunning">Figuur <bdi class="figno">2</bdi></a> <span class="fig-title"> ‒ Diagram: Vergunning</span></figcaption></figure><map name="imagemap-EAID_1CBB5965_675B_456b_BB07_F70A8DEF496D"><area shape="rect" alt="TypeInstallatie" coords="528,1485,701,1642" href="#global_class_Vergunning_TypeInstallatie"><area shape="rect" alt="VESTIGING" coords="293,59,543,269" href="#global_class_CIM_VESTIGING"><area shape="rect" alt="BETROKKENE" coords="716,83,970,246" href="#global_class_CIM_BETROKKENE"><area shape="rect" alt="Productienorm" coords="371,1505,630,1644" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Omgevingsnorm" coords="203,1505,401,1609" href="#global_class_Vergunning_Omgevingsnorm"><area shape="rect" alt="Norm" coords="259,1351,476,1584" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Juridische regel" coords="48,1164,243,1303" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Voorschrifttekst" coords="393,1206,516,1262" href="#global_class_Vergunning_Voorschrifttekst"><area shape="rect" alt="Bedrijfsactiviteit" coords="759,1389,882,1493" href="#global_class_Vergunning_Bedrijfsactiviteit"><area shape="rect" alt="Bedrijfsinstallatie" coords="516,1303,665,1448" href="#global_class_Vergunning_Bedrijfsinstallatie"><area shape="rect" alt="ALGEMEEN VERBINDEND VOORSCHRIFT" coords="2126,382,2393,592" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT"><area shape="rect" alt="Locatie" coords="1202,1045,1371,1281" href="#global_class_Vergunning_Locatie"><area shape="rect" alt="Natura2000gebied" coords="1573,1225,1696,1281" href="#global_class_Vergunning_Natura2000gebied"><area shape="rect" alt="GEO-OBJECT" coords="2155,793,2366,897" href="#global_class_CIM_GEOOBJECT"><area shape="rect" alt="ACTIVITEITUITVOERING" coords="1164,400,1481,574" href="#global_class_CIM_ACTIVITEITUITVOERING"><area shape="rect" alt="ACTIVITEIT" coords="1591,409,1853,566" href="#global_class_CIM_ACTIVITEIT"><area shape="rect" alt="VTH-OBJECT" coords="1678,757,1928,932" href="#global_class_CIM_VTHOBJECT"><area shape="rect" alt="OVERWEGING" coords="903,610,1148,785" href="#global_class_CIM_OVERWEGING"><area shape="rect" alt="SPECIFIEK VOORSCHRIFT" coords="505,853,774,1045" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT"><area shape="rect" alt="TOESTEMMING" coords="536,364,774,610" href="#global_class_CIM_TOESTEMMING"></map><p>
                         </p><p></p>
                      <p></p></div></section><section id="objecttypen"><div class="header-wrapper"><h4 id="x2-1-3-objecttypen"><bdi class="secno">2.1.3 </bdi>Objecttypen   </h4><a class="self-link" href="#objecttypen" aria-label="Permalink for Section 2.1.3"></a></div>
             <section id="global_class_Vergunning_Voorschrifttekst"><div class="header-wrapper"><h5 id="x2-1-3-1-voorschrifttekst"><bdi class="secno">2.1.3.1 </bdi>   Voorschrifttekst</h5><a class="self-link" href="#global_class_Vergunning_Voorschrifttekst" aria-label="Permalink for Section 2.1.3.1"></a></div>
@@ -1582,7 +1598,7 @@ structuurelementen.</p>
                
             </section>
             <section id="global_class_Vergunning_Norm"><div class="header-wrapper"><h5 id="x2-1-3-3-norm"><bdi class="secno">2.1.3.3 </bdi>   Norm</h5><a class="self-link" href="#global_class_Vergunning_Norm" aria-label="Permalink for Section 2.1.3.3"></a></div>
-               <section id="EAID_04ED0E22_CD23_40e0_BC62_136339468436"><div class="header-wrapper"><h6 id="x2-1-3-3-1-norm-detail"><bdi class="secno">2.1.3.3.1 </bdi>   Norm - detail</h6><a class="self-link" href="#EAID_04ED0E22_CD23_40e0_BC62_136339468436" aria-label="Permalink for Section 2.1.3.3.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-norm"><img id="EAID_04ED0E22_CD23_40e0_BC62_136339468436" src="data/Images/EAID_04ED0E22_CD23_40e0_BC62_136339468436.png" usemap="#imagemap-EAID_04ED0E22_CD23_40e0_BC62_136339468436" alt="Diagram: Norm - detail"><figcaption><a class="self-link" href="#fig-diagram-norm">Figuur <bdi class="figno">3</bdi></a> <span class="fig-title"> ‒ Diagram: Norm</span></figcaption></figure><map name="imagemap-EAID_04ED0E22_CD23_40e0_BC62_136339468436"><area shape="rect" alt="Diercategorie" coords="581,422,796,1235" href="#detail_class_Vergunning_Diercategorie"><area shape="rect" alt="Parameter" coords="583,100,796,221" href="#global_class_Vergunning_Parameter"><area shape="rect" alt="Waarde" coords="592,266,746,388" href="#global_class_Vergunning_Waarde"><area shape="rect" alt="Juridische regel" coords="55,59,250,120" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Norm" coords="48,243,258,516" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Tijdvak" coords="328,330,489,452" href="#global_class_Vergunning_Tijdvak"><area shape="rect" alt="Tijdsduur" coords="328,478,459,599" href="#global_class_Vergunning_Tijdsduur"><area shape="rect" alt="Normwaarde" coords="328,100,547,315" href="#global_class_Vergunning_Normwaarde"><area shape="rect" alt="TypeNorm" coords="710,519,906,1137" href="#detail_class_Vergunning_TypeNorm"></map><p>
+               <section id="EAID_04ED0E22_CD23_40e0_BC62_136339468436"><div class="header-wrapper"><h6 id="x2-1-3-3-1-norm-detail"><bdi class="secno">2.1.3.3.1 </bdi>   Norm - detail</h6><a class="self-link" href="#EAID_04ED0E22_CD23_40e0_BC62_136339468436" aria-label="Permalink for Section 2.1.3.3.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-norm"><img id="EAID_04ED0E22_CD23_40e0_BC62_136339468436" src="data/Images/EAID_04ED0E22_CD23_40e0_BC62_136339468436.png" usemap="#imagemap-EAID_04ED0E22_CD23_40e0_BC62_136339468436" alt="Diagram: Norm - detail"><figcaption><a class="self-link" href="#fig-diagram-norm">Figuur <bdi class="figno">3</bdi></a> <span class="fig-title"> ‒ Diagram: Norm</span></figcaption></figure><map name="imagemap-EAID_04ED0E22_CD23_40e0_BC62_136339468436"><area shape="rect" alt="TypeNorm" coords="63,568,259,1186" href="#detail_class_Vergunning_TypeNorm"><area shape="rect" alt="Diercategorie" coords="581,426,796,1239" href="#detail_class_Vergunning_Diercategorie"><area shape="rect" alt="Parameter" coords="583,104,796,225" href="#global_class_Vergunning_Parameter"><area shape="rect" alt="Waarde" coords="592,270,746,392" href="#global_class_Vergunning_Waarde"><area shape="rect" alt="Juridische regel" coords="55,63,250,124" href="#global_class_Vergunning_Juridischeregel"><area shape="rect" alt="Norm" coords="48,247,258,520" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Tijdvak" coords="328,334,489,456" href="#global_class_Vergunning_Tijdvak"><area shape="rect" alt="Tijdsduur" coords="328,482,459,603" href="#global_class_Vergunning_Tijdsduur"><area shape="rect" alt="Normwaarde" coords="328,104,547,319" href="#global_class_Vergunning_Normwaarde"></map><p>
                               </p><p></p>
                            <p></p></div></section>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Norm</td></tr><tr><th>Definitie</th><td>
@@ -1596,15 +1612,11 @@ beschreven worden middels normwaarden.</p>
                            <a class="link" href="#detail_attribute_Vergunning_Norm_conditie">conditie</a>
                         </td><td></td><td>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
-                        </td><td>1</td></tr><tr><td>
+                        </td><td>0 .. 1</td></tr><tr><td>
                            <a class="link" href="#detail_attribute_Vergunning_Norm_eenheid">eenheid</a>
                         </td><td></td><td>
                            Eenheid
                         </td><td>1</td></tr><tr><td>
-                           <a class="link" href="#detail_attribute_Vergunning_Norm_eenheidsymbool">eenheidsymbool</a>
-                        </td><td></td><td>
-                           Eenheid
-                        </td><td>0 .. 1</td></tr><tr><td>
                            <a class="link" href="#detail_attribute_Vergunning_Norm_onderwerp">onderwerp</a>
                         </td><td></td><td>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
@@ -1616,7 +1628,7 @@ beschreven worden middels normwaarden.</p>
                            normwaarde
                         :</td><td></td><td>
                            <a class="link" href="#detail_class_Vergunning_Normwaarde">Normwaarde</a>
-                        </td><td>1</td></tr><tr><td>- 
+                        </td><td>0 .. 1</td></tr><tr><td>- 
                            <a class="link" href="#detail_attribute_Vergunning_Normwaarde_diercategorie">diercategorie</a>
                         </td><td></td><td>
                            Diercategorie
@@ -1672,7 +1684,7 @@ beschreven worden middels normwaarden.</p>
                
             </section>
             <section id="global_class_Vergunning_Omgevingsnorm"><div class="header-wrapper"><h5 id="x2-1-3-4-omgevingsnorm"><bdi class="secno">2.1.3.4 </bdi>   Omgevingsnorm</h5><a class="self-link" href="#global_class_Vergunning_Omgevingsnorm" aria-label="Permalink for Section 2.1.3.4"></a></div>
-               <section id="EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2"><div class="header-wrapper"><h6 id="x2-1-3-4-1-omgevingsnorm-detail"><bdi class="secno">2.1.3.4.1 </bdi>   Omgevingsnorm - detail</h6><a class="self-link" href="#EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2" aria-label="Permalink for Section 2.1.3.4.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-omgevingsnorm"><img id="EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2" src="data/Images/EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2.png" usemap="#imagemap-EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2" alt="Diagram: Omgevingsnorm - detail"><figcaption><a class="self-link" href="#fig-diagram-omgevingsnorm">Figuur <bdi class="figno">4</bdi></a> <span class="fig-title"> ‒ Diagram: Omgevingsnorm</span></figcaption></figure><map name="imagemap-EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2"><area shape="rect" alt="Norm" coords="50,59,261,124" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Omgevingsnormgroep" coords="48,343,229,783" href="#detail_class_Vergunning_Omgevingsnormgroep"><area shape="rect" alt="Omgevingsnorm" coords="56,194,254,319" href="#global_class_Vergunning_Omgevingsnorm"></map><p>
+               <section id="EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2"><div class="header-wrapper"><h6 id="x2-1-3-4-1-omgevingsnorm-detail"><bdi class="secno">2.1.3.4.1 </bdi>   Omgevingsnorm - detail</h6><a class="self-link" href="#EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2" aria-label="Permalink for Section 2.1.3.4.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-omgevingsnorm"><img id="EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2" src="data/Images/EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2.png" usemap="#imagemap-EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2" alt="Diagram: Omgevingsnorm - detail"><figcaption><a class="self-link" href="#fig-diagram-omgevingsnorm">Figuur <bdi class="figno">4</bdi></a> <span class="fig-title"> ‒ Diagram: Omgevingsnorm</span></figcaption></figure><map name="imagemap-EAID_4E7CB2EB_088A_4399_8FB2_7C18E6AB3FC2"><area shape="rect" alt="Norm" coords="48,63,258,128" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Omgevingsnormgroep" coords="300,67,482,508" href="#detail_class_Vergunning_Omgevingsnormgroep"><area shape="rect" alt="Omgevingsnorm" coords="53,198,251,323" href="#global_class_Vergunning_Omgevingsnorm"></map><p>
                               </p><p></p>
                            <p></p></div></section>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Omgevingsnorm</td></tr><tr><th>Definitie</th><td>
@@ -1703,7 +1715,7 @@ beschreven worden middels normwaarden.</p>
                
             </section>
             <section id="global_class_Vergunning_Productienorm"><div class="header-wrapper"><h5 id="x2-1-3-5-productienorm"><bdi class="secno">2.1.3.5 </bdi>   Productienorm</h5><a class="self-link" href="#global_class_Vergunning_Productienorm" aria-label="Permalink for Section 2.1.3.5"></a></div>
-               <section id="EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8"><div class="header-wrapper"><h6 id="x2-1-3-5-1-productienorm-detail"><bdi class="secno">2.1.3.5.1 </bdi>   Productienorm - detail</h6><a class="self-link" href="#EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8" aria-label="Permalink for Section 2.1.3.5.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-productienorm"><img id="EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8" src="data/Images/EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8.png" usemap="#imagemap-EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8" alt="Diagram: Productienorm - detail"><figcaption><a class="self-link" href="#fig-diagram-productienorm">Figuur <bdi class="figno">5</bdi></a> <span class="fig-title"> ‒ Diagram: Productienorm</span></figcaption></figure><map name="imagemap-EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8"><area shape="rect" alt="Norm" coords="56,63,266,143" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Productienorm" coords="48,183,274,344" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Productienormgroep" coords="48,397,445,838" href="#detail_class_Vergunning_Productienormgroep"></map><p>
+               <section id="EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8"><div class="header-wrapper"><h6 id="x2-1-3-5-1-productienorm-detail"><bdi class="secno">2.1.3.5.1 </bdi>   Productienorm - detail</h6><a class="self-link" href="#EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8" aria-label="Permalink for Section 2.1.3.5.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-productienorm"><img id="EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8" src="data/Images/EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8.png" usemap="#imagemap-EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8" alt="Diagram: Productienorm - detail"><figcaption><a class="self-link" href="#fig-diagram-productienorm">Figuur <bdi class="figno">5</bdi></a> <span class="fig-title"> ‒ Diagram: Productienorm</span></figcaption></figure><map name="imagemap-EAID_F2BDB7DD_4165_4b23_9BB5_01350FD01EE8"><area shape="rect" alt="Norm" coords="56,59,266,139" href="#global_class_Vergunning_Norm"><area shape="rect" alt="Productienorm" coords="48,179,307,340" href="#global_class_Vergunning_Productienorm"><area shape="rect" alt="Productienormgroep" coords="348,64,745,505" href="#detail_class_Vergunning_Productienormgroep"></map><p>
                               </p><p></p>
                            <p></p></div></section>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Productienorm</td></tr><tr><th>Definitie</th><td>
@@ -1717,11 +1729,11 @@ waarde wordt uitgedrukt.</p>
                            <a class="link" href="#detail_attribute_Vergunning_Productienorm_bewaringseenheid">bewaringseenheid</a>
                         </td><td></td><td>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
-                        </td><td>1</td></tr><tr><td>
+                        </td><td>0 .. 1</td></tr><tr><td>
                            <a class="link" href="#detail_attribute_Vergunning_Productienorm_gezamenlijkeNormwaarde">gezamenlijke­Normwaarde</a>
                         </td><td></td><td>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Real</a>
-                        </td><td>1</td></tr><tr><td>
+                        </td><td>0 .. 1</td></tr><tr><td>
                            <a class="link" href="#detail_attribute_Vergunning_Productienorm_groep">groep</a>
                         </td><td></td><td>
                            Productienormgroep
@@ -1747,6 +1759,21 @@ beschreven worden middels normwaarden.</p>
                               <p>Een activiteit die plaatsvindt op een vestiging van een bedrijf.</p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-3">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for this Section"></a></div>
+                  <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
+                           tijdvak
+                        :</td><td></td><td>
+                           <a class="link" href="#detail_class_Vergunning_Tijdvak">Tijdvak</a>
+                        </td><td>1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_begindatum">begindatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_einddatum">einddatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>0 .. 1</td></tr></tbody></table>
+               
                <div class="header-wrapper"><h6 id="overzicht-relaties-4">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsactiviteit" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
@@ -1790,12 +1817,24 @@ gebruikt in het uitvoeren van de bedrijfsactiviteit. Bijvoorbeeld een gebouw, ee
 opslagtank, een fakkelinstallatie.</p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-3">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-4">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_Vergunning_Bedrijfsinstallatie_naam">naam</a>
                         </td><td></td><td>
                            <a class="link" href="#global_class_Vergunning_TypeInstallatie">Type­Installatie</a>
-                        </td><td>1</td></tr></tbody></table>
+                        </td><td>1</td></tr><tr><td>
+                           tijdvak
+                        :</td><td></td><td>
+                           <a class="link" href="#detail_class_Vergunning_Tijdvak">Tijdvak</a>
+                        </td><td>1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_begindatum">begindatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_einddatum">einddatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>0 .. 1</td></tr></tbody></table>
                
                <div class="header-wrapper"><h6 id="overzicht-relaties-5">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Bedrijfsinstallatie" aria-label="Permalink for this Section"></a></div>
                   
@@ -1839,20 +1878,24 @@ opslagtank, een fakkelinstallatie.</p>
 een regel of van een objecttype die in de regel beschreven wordt.</p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-4">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Locatie" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-5">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Locatie" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
-                           <a class="link" href="#detail_attribute_Vergunning_Locatie_Einddatum">Einddatum</a>
-                        </td><td></td><td>
-                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                        </td><td>0 .. 1</td></tr><tr><td>
-                           <a class="link" href="#detail_attribute_Vergunning_Locatie_Ingangsdatum">Ingangsdatum</a>
-                        </td><td></td><td>
-                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                        </td><td>1</td></tr><tr><td>
-                           <a class="link" href="#detail_attribute_Vergunning_Locatie_Noemer">Noemer</a>
+                           <a class="link" href="#detail_attribute_Vergunning_Locatie_noemer">noemer</a>
                         </td><td></td><td>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
-                        </td><td>1</td></tr></tbody></table>
+                        </td><td>1</td></tr><tr><td>
+                           tijdvak
+                        :</td><td></td><td>
+                           <a class="link" href="#detail_class_Vergunning_Tijdvak">Tijdvak</a>
+                        </td><td>0 .. 1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_begindatum">begindatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_einddatum">einddatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>0 .. 1</td></tr></tbody></table>
                
                <div class="header-wrapper"><h6 id="overzicht-relaties-6">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Locatie" aria-label="Permalink for this Section"></a></div>
                   
@@ -1886,13 +1929,126 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                         </td><td></td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Betreffendeafvalstof"><div class="header-wrapper"><h5 id="x2-1-3-10-betreffende-afval-stof"><bdi class="secno">2.1.3.10 </bdi>   Betreffende (afval)stof</h5><a class="self-link" href="#global_class_Vergunning_Betreffendeafvalstof" aria-label="Permalink for Section 2.1.3.10"></a></div>
-               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Betreffende (afval)stof</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+            <section id="global_class_Vergunning_Geluidimmissiepunt"><div class="header-wrapper"><h5 id="x2-1-3-10-geluidimmissiepunt"><bdi class="secno">2.1.3.10 </bdi>   Geluidimmissiepunt</h5><a class="self-link" href="#global_class_Vergunning_Geluidimmissiepunt" aria-label="Permalink for Section 2.1.3.10"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Geluidimmissiepunt</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-8">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Geluidimmissiepunt" aria-label="Permalink for this Section"></a></div>
+                  
+                  <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
+                           Geluidimmissiepunt
+                           [ 1 ]
+                           
+                              <a class="link" href="#detail_association_Vergunning_Geluidimmissiepunt_locatie">heeft impact op: locatie</a>
+                           
+                           
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           
+                           [ 0 .. * ]
+                        </td><td></td></tr></tbody></table>
+               
+            </section>
+            <section id="global_class_Vergunning_GeurgevoeligObject"><div class="header-wrapper"><h5 id="x2-1-3-11-geurgevoelig-object"><bdi class="secno">2.1.3.11 </bdi>   Geurgevoelig­Object</h5><a class="self-link" href="#global_class_Vergunning_GeurgevoeligObject" aria-label="Permalink for Section 2.1.3.11"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Geurgevoelig­Object</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-9">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_GeurgevoeligObject" aria-label="Permalink for this Section"></a></div>
+                  
+                  <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
+                           Geurgevoelig­Object
+                           [ 1 ]
+                           
+                              <a class="link" href="#detail_association_Vergunning_GeurgevoeligObject_locatie">heeft impact op: locatie</a>
+                           
+                           
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           
+                           [ 0 .. * ]
+                        </td><td></td></tr></tbody></table>
+               
+            </section>
+            <section id="global_class_Vergunning_PlaatsgebondenRisicocontour"><div class="header-wrapper"><h5 id="x2-1-3-12-plaatsgebonden-risicocontour"><bdi class="secno">2.1.3.12 </bdi>   Plaatsgebonden­Risicocontour</h5><a class="self-link" href="#global_class_Vergunning_PlaatsgebondenRisicocontour" aria-label="Permalink for Section 2.1.3.12"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Plaatsgebonden­Risicocontour</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-10">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_PlaatsgebondenRisicocontour" aria-label="Permalink for this Section"></a></div>
+                  
+                  <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
+                           Plaatsgebonden­Risicocontour
+                           [ 1 ]
+                           
+                              <a class="link" href="#detail_association_Vergunning_PlaatsgebondenRisicocontour_locatie">heeft impact op: locatie</a>
+                           
+                           
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           
+                           [ 0 .. * ]
+                        </td><td></td></tr></tbody></table>
+               
+            </section>
+            <section id="global_class_Vergunning_Brandaandachtgebiedcontour"><div class="header-wrapper"><h5 id="x2-1-3-13-brandaandachtgebiedcontour"><bdi class="secno">2.1.3.13 </bdi>   Brandaandachtgebiedcontour</h5><a class="self-link" href="#global_class_Vergunning_Brandaandachtgebiedcontour" aria-label="Permalink for Section 2.1.3.13"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Brandaandachtgebiedcontour</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-11">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Brandaandachtgebiedcontour" aria-label="Permalink for this Section"></a></div>
+                  
+                  <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
+                           Brandaandachtgebiedcontour
+                           [ 1 ]
+                           
+                              <a class="link" href="#detail_association_Vergunning_Brandaandachtgebiedcontour_locatie">heeft impact op: locatie</a>
+                           
+                           
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           
+                           [ 0 .. * ]
+                        </td><td></td></tr></tbody></table>
+               
+            </section>
+            <section id="global_class_Vergunning_Explosieaandachtgebiedcontour"><div class="header-wrapper"><h5 id="x2-1-3-14-explosieaandachtgebiedcontour"><bdi class="secno">2.1.3.14 </bdi>   Explosieaandachtgebiedcontour</h5><a class="self-link" href="#global_class_Vergunning_Explosieaandachtgebiedcontour" aria-label="Permalink for Section 2.1.3.14"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Explosieaandachtgebiedcontour</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-12">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Explosieaandachtgebiedcontour" aria-label="Permalink for this Section"></a></div>
+                  
+                  <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
+                           Explosieaandachtgebiedcontour
+                           [ 1 ]
+                           
+                              <a class="link" href="#detail_association_Vergunning_Explosieaandachtgebiedcontour_locatie">heeft impact op: locatie</a>
+                           
+                           
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           
+                           [ 0 .. * ]
+                        </td><td></td></tr></tbody></table>
+               
+            </section>
+            <section id="global_class_Vergunning_Gifwolkaandachtgebiedcontour"><div class="header-wrapper"><h5 id="x2-1-3-15-gifwolkaandachtgebiedcontour"><bdi class="secno">2.1.3.15 </bdi>   Gifwolkaandachtgebiedcontour</h5><a class="self-link" href="#global_class_Vergunning_Gifwolkaandachtgebiedcontour" aria-label="Permalink for Section 2.1.3.15"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Gifwolkaandachtgebiedcontour</td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-13">Overzicht relaties  </h6><a class="self-link" href="#global_class_Vergunning_Gifwolkaandachtgebiedcontour" aria-label="Permalink for this Section"></a></div>
+                  
+                  <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
+                           Gifwolkaandachtgebiedcontour
+                           [ 1 ]
+                           
+                              <a class="link" href="#detail_association_Vergunning_Gifwolkaandachtgebiedcontour_locatie">heeft impact op: locatie</a>
+                           
+                           
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           
+                           [ 0 .. * ]
+                        </td><td></td></tr></tbody></table>
+               
             </section>
          </section><section id="gegevensgroeptypen"><div class="header-wrapper"><h4 id="x2-1-4-gegevensgroeptypen"><bdi class="secno">2.1.4 </bdi>Gegevensgroeptypen   </h4><a class="self-link" href="#gegevensgroeptypen" aria-label="Permalink for Section 2.1.4"></a></div>
-            <section id="global_class_Vergunning_Normwaarde"><div class="header-wrapper"><h5 id="x2-1-4-1-gegevensgroep-normwaarde"><bdi class="secno">2.1.4.1 </bdi>Gegevensgroep   Normwaarde</h5><a class="self-link" href="#global_class_Vergunning_Normwaarde" aria-label="Permalink for Section 2.1.4.1"></a></div>
+            <section id="global_class_Vergunning_Tijdvak"><div class="header-wrapper"><h5 id="x2-1-4-1-gegevensgroep-tijdvak"><bdi class="secno">2.1.4.1 </bdi>Gegevensgroep   Tijdvak</h5><a class="self-link" href="#global_class_Vergunning_Tijdvak" aria-label="Permalink for Section 2.1.4.1"></a></div>
+               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Tijdvak</td></tr></tbody></table>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-6">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Tijdvak" aria-label="Permalink for this Section"></a></div>
+                  <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_begindatum">begindatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>1</td></tr><tr><td>- 
+                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_einddatum">einddatum</a>
+                        </td><td></td><td>
+                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                        </td><td>0 .. 1</td></tr></tbody></table>
+               
+            </section>
+            <section id="global_class_Vergunning_Normwaarde"><div class="header-wrapper"><h5 id="x2-1-4-2-gegevensgroep-normwaarde"><bdi class="secno">2.1.4.2 </bdi>Gegevensgroep   Normwaarde</h5><a class="self-link" href="#global_class_Vergunning_Normwaarde" aria-label="Permalink for Section 2.1.4.2"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Normwaarde</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-5">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Normwaarde" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-7">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Normwaarde" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
                            <a class="link" href="#detail_attribute_Vergunning_Normwaarde_diercategorie">diercategorie</a>
                         </td><td></td><td>
@@ -1928,12 +2084,12 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                         </td><td>1</td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Parameter"><div class="header-wrapper"><h5 id="x2-1-4-2-gegevensgroep-parameter"><bdi class="secno">2.1.4.2 </bdi>Gegevensgroep   Parameter</h5><a class="self-link" href="#global_class_Vergunning_Parameter" aria-label="Permalink for Section 2.1.4.2"></a></div>
-               <section id="EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0"><div class="header-wrapper"><h6 id="x2-1-4-2-1-parameter-detail"><bdi class="secno">2.1.4.2.1 </bdi>   Parameter - detail</h6><a class="self-link" href="#EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0" aria-label="Permalink for Section 2.1.4.2.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-parameter"><img id="EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0" src="data/Images/EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0.png" usemap="#imagemap-EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0" alt="Diagram: Parameter - detail"><figcaption><a class="self-link" href="#fig-diagram-parameter">Figuur <bdi class="figno">6</bdi></a> <span class="fig-title"> ‒ Diagram: Parameter</span></figcaption></figure><map name="imagemap-EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0"><area shape="rect" alt="Parametersoort" coords="48,202,171,430" href="#detail_class_Vergunning_Parametersoort"><area shape="rect" alt="Parameter" coords="51,59,263,180" href="#global_class_Vergunning_Parameter"></map><p>
+            <section id="global_class_Vergunning_Parameter"><div class="header-wrapper"><h5 id="x2-1-4-3-gegevensgroep-parameter"><bdi class="secno">2.1.4.3 </bdi>Gegevensgroep   Parameter</h5><a class="self-link" href="#global_class_Vergunning_Parameter" aria-label="Permalink for Section 2.1.4.3"></a></div>
+               <section id="EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0"><div class="header-wrapper"><h6 id="x2-1-4-3-1-parameter-detail"><bdi class="secno">2.1.4.3.1 </bdi>   Parameter - detail</h6><a class="self-link" href="#EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0" aria-label="Permalink for Section 2.1.4.3.1"></a></div><div class="imageinfo "><figure class="uml-diagram" id="fig-diagram-parameter"><img id="EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0" src="data/Images/EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0.png" usemap="#imagemap-EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0" alt="Diagram: Parameter - detail"><figcaption><a class="self-link" href="#fig-diagram-parameter">Figuur <bdi class="figno">6</bdi></a> <span class="fig-title"> ‒ Diagram: Parameter</span></figcaption></figure><map name="imagemap-EAID_B78B5030_7A9C_4306_A082_AEF195A44BB0"><area shape="rect" alt="Parametersoort" coords="48,202,171,430" href="#detail_class_Vergunning_Parametersoort"><area shape="rect" alt="Parameter" coords="51,59,263,180" href="#global_class_Vergunning_Parameter"></map><p>
                               </p><p></p>
                            <p></p></div></section>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Parameter</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-6">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Parameter" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-8">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Parameter" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
                            <a class="link" href="#detail_attribute_Vergunning_Parameter_parameter">parameter</a>
                         </td><td></td><td>
@@ -1945,9 +2101,9 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                         </td><td>1</td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Tijdsduur"><div class="header-wrapper"><h5 id="x2-1-4-3-gegevensgroep-tijdsduur"><bdi class="secno">2.1.4.3 </bdi>Gegevensgroep   Tijdsduur</h5><a class="self-link" href="#global_class_Vergunning_Tijdsduur" aria-label="Permalink for Section 2.1.4.3"></a></div>
+            <section id="global_class_Vergunning_Tijdsduur"><div class="header-wrapper"><h5 id="x2-1-4-4-gegevensgroep-tijdsduur"><bdi class="secno">2.1.4.4 </bdi>Gegevensgroep   Tijdsduur</h5><a class="self-link" href="#global_class_Vergunning_Tijdsduur" aria-label="Permalink for Section 2.1.4.4"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Tijdsduur</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-7">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Tijdsduur" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-9">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Tijdsduur" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
                            <a class="link" href="#detail_attribute_Vergunning_Tijdsduur_duur">duur</a>
                         </td><td></td><td>
@@ -1959,23 +2115,9 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                         </td><td>1</td></tr></tbody></table>
                
             </section>
-            <section id="global_class_Vergunning_Tijdvak"><div class="header-wrapper"><h5 id="x2-1-4-4-gegevensgroep-tijdvak"><bdi class="secno">2.1.4.4 </bdi>Gegevensgroep   Tijdvak</h5><a class="self-link" href="#global_class_Vergunning_Tijdvak" aria-label="Permalink for Section 2.1.4.4"></a></div>
-               <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Tijdvak</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-8">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Tijdvak" aria-label="Permalink for this Section"></a></div>
-                  <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
-                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_begindatum">begindatum</a>
-                        </td><td></td><td>
-                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                        </td><td>1</td></tr><tr><td>- 
-                           <a class="link" href="#detail_attribute_Vergunning_Tijdvak_einddatum">einddatum</a>
-                        </td><td></td><td>
-                           <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                        </td><td>0 .. 1</td></tr></tbody></table>
-               
-            </section>
             <section id="global_class_Vergunning_Waarde"><div class="header-wrapper"><h5 id="x2-1-4-5-gegevensgroep-waarde"><bdi class="secno">2.1.4.5 </bdi>Gegevensgroep   Waarde</h5><a class="self-link" href="#global_class_Vergunning_Waarde" aria-label="Permalink for Section 2.1.4.5"></a></div>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Waarde</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-9">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Waarde" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-10">Overzicht attributen  </h6><a class="self-link" href="#global_class_Vergunning_Waarde" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
                            <a class="link" href="#detail_attribute_Vergunning_Waarde_maximum">maximum</a>
                         </td><td></td><td>
@@ -2052,7 +2194,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
                            </td></tr><tr><th>Patroon</th><td>
                               De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Norm_eenheid"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Norm">Norm</a> eenheid</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>eenheid</td></tr><tr><th>Formaat</th><td>
@@ -2060,13 +2202,6 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            </td></tr><tr><th>Patroon</th><td>
                               De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
                            </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
-                  </div>
-                  <div class="deepheader" id="detail_attribute_Vergunning_Norm_eenheidsymbool"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Norm">Norm</a> eenheidsymbool</h7>
-                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>eenheidsymbool</td></tr><tr><th>Formaat</th><td>
-                              <a class="link" href="#detail_class_Vergunning_Eenheid">Eenheid</a>
-                           </td></tr><tr><th>Patroon</th><td>
-                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Norm_onderwerp"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Norm">Norm</a> onderwerp</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>onderwerp</td></tr><tr><th>Formaat</th><td>
@@ -2098,14 +2233,14 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
                            </td></tr><tr><th>Patroon</th><td>
                               De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Productienorm_gezamenlijkeNormwaarde"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Productienorm">Productienorm</a> gezamenlijke­Normwaarde</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>gezamenlijke­Normwaarde</td></tr><tr><th>Formaat</th><td>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Real</a>
                            </td></tr><tr><th>Patroon</th><td>
                               De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Productienorm_groep"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Productienorm">Productienorm</a> groep</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>groep</td></tr><tr><th>Formaat</th><td>
@@ -2163,22 +2298,8 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                   </div>
                </section>
                <section id="detail_class_Vergunning_Locatie"><div class="header-wrapper"><h6 id="x2-1-6-1-8-locatie"><bdi class="secno">2.1.6.1.8 </bdi>   Locatie</h6><a class="self-link" href="#detail_class_Vergunning_Locatie" aria-label="Permalink for Section 2.1.6.1.8"></a></div>
-                  <div class="deepheader" id="detail_attribute_Vergunning_Locatie_Einddatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Locatie">Locatie</a> Einddatum</h7>
-                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Einddatum</td></tr><tr><th>Formaat</th><td>
-                              <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                           </td></tr><tr><th>Patroon</th><td>
-                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
-                  </div>
-                  <div class="deepheader" id="detail_attribute_Vergunning_Locatie_Ingangsdatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Locatie">Locatie</a> Ingangsdatum</h7>
-                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Ingangsdatum</td></tr><tr><th>Formaat</th><td>
-                              <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                           </td></tr><tr><th>Patroon</th><td>
-                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
-                  </div>
-                  <div class="deepheader" id="detail_attribute_Vergunning_Locatie_Noemer"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Locatie">Locatie</a> Noemer</h7>
-                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Noemer</td></tr><tr><th>Formaat</th><td>
+                  <div class="deepheader" id="detail_attribute_Vergunning_Locatie_noemer"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Locatie">Locatie</a> noemer</h7>
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>noemer</td></tr><tr><th>Formaat</th><td>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
                            </td></tr><tr><th>Patroon</th><td>
                               De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
@@ -2199,10 +2320,73 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
                   </div>
                </section>
-               
+               <section id="detail_class_Vergunning_Geluidimmissiepunt"><div class="header-wrapper"><h6 id="x2-1-6-1-10-geluidimmissiepunt"><bdi class="secno">2.1.6.1.10 </bdi>   Geluidimmissiepunt</h6><a class="self-link" href="#detail_class_Vergunning_Geluidimmissiepunt" aria-label="Permalink for Section 2.1.6.1.10"></a></div>
+                  <div class="deepheader" id="detail_association_Vergunning_Geluidimmissiepunt_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Geluidimmissiepunt">Geluidimmissiepunt</a> heeft impact op</h7>
+                     
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
+                  </div>
+               </section>
+               <section id="detail_class_Vergunning_GeurgevoeligObject"><div class="header-wrapper"><h6 id="x2-1-6-1-11-geurgevoelig-object"><bdi class="secno">2.1.6.1.11 </bdi>   Geurgevoelig­Object</h6><a class="self-link" href="#detail_class_Vergunning_GeurgevoeligObject" aria-label="Permalink for Section 2.1.6.1.11"></a></div>
+                  <div class="deepheader" id="detail_association_Vergunning_GeurgevoeligObject_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_GeurgevoeligObject">Geurgevoelig­Object</a> heeft impact op</h7>
+                     
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
+                  </div>
+               </section>
+               <section id="detail_class_Vergunning_PlaatsgebondenRisicocontour"><div class="header-wrapper"><h6 id="x2-1-6-1-12-plaatsgebonden-risicocontour"><bdi class="secno">2.1.6.1.12 </bdi>   Plaatsgebonden­Risicocontour</h6><a class="self-link" href="#detail_class_Vergunning_PlaatsgebondenRisicocontour" aria-label="Permalink for Section 2.1.6.1.12"></a></div>
+                  <div class="deepheader" id="detail_association_Vergunning_PlaatsgebondenRisicocontour_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_PlaatsgebondenRisicocontour">Plaatsgebonden­Risicocontour</a> heeft impact op</h7>
+                     
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
+                  </div>
+               </section>
+               <section id="detail_class_Vergunning_Brandaandachtgebiedcontour"><div class="header-wrapper"><h6 id="x2-1-6-1-13-brandaandachtgebiedcontour"><bdi class="secno">2.1.6.1.13 </bdi>   Brandaandachtgebiedcontour</h6><a class="self-link" href="#detail_class_Vergunning_Brandaandachtgebiedcontour" aria-label="Permalink for Section 2.1.6.1.13"></a></div>
+                  <div class="deepheader" id="detail_association_Vergunning_Brandaandachtgebiedcontour_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Brandaandachtgebiedcontour">Brandaandachtgebiedcontour</a> heeft impact op</h7>
+                     
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
+                  </div>
+               </section>
+               <section id="detail_class_Vergunning_Explosieaandachtgebiedcontour"><div class="header-wrapper"><h6 id="x2-1-6-1-14-explosieaandachtgebiedcontour"><bdi class="secno">2.1.6.1.14 </bdi>   Explosieaandachtgebiedcontour</h6><a class="self-link" href="#detail_class_Vergunning_Explosieaandachtgebiedcontour" aria-label="Permalink for Section 2.1.6.1.14"></a></div>
+                  <div class="deepheader" id="detail_association_Vergunning_Explosieaandachtgebiedcontour_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Explosieaandachtgebiedcontour">Explosieaandachtgebiedcontour</a> heeft impact op</h7>
+                     
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
+                  </div>
+               </section>
+               <section id="detail_class_Vergunning_Gifwolkaandachtgebiedcontour"><div class="header-wrapper"><h6 id="x2-1-6-1-15-gifwolkaandachtgebiedcontour"><bdi class="secno">2.1.6.1.15 </bdi>   Gifwolkaandachtgebiedcontour</h6><a class="self-link" href="#detail_class_Vergunning_Gifwolkaandachtgebiedcontour" aria-label="Permalink for Section 2.1.6.1.15"></a></div>
+                  <div class="deepheader" id="detail_association_Vergunning_Gifwolkaandachtgebiedcontour_locatie"><h7>Relatiesoort details  <a href="#global_class_Vergunning_Gifwolkaandachtgebiedcontour">Gifwolkaandachtgebiedcontour</a> heeft impact op</h7>
+                     
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>heeft impact op</td></tr><tr><th>Gerelateerd objecttype</th><td>
+                              <a class="link" href="#global_class_Vergunning_Locatie">Locatie</a>
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. *</td></tr></tbody></table>
+                  </div>
+               </section>
             </section>
             <section id="gegevensgroeptype-details"><div class="header-wrapper"><h5 id="x2-1-6-2-gegevensgroeptype-details"><bdi class="secno">2.1.6.2 </bdi>Gegevensgroeptype details  </h5><a class="self-link" href="#gegevensgroeptype-details" aria-label="Permalink for Section 2.1.6.2"></a></div>
-               <section id="detail_class_Vergunning_Normwaarde"><div class="header-wrapper"><h6 id="x2-1-6-2-1-gegevensgroeptype-normwaarde"><bdi class="secno">2.1.6.2.1 </bdi>Gegevensgroeptype   Normwaarde</h6><a class="self-link" href="#detail_class_Vergunning_Normwaarde" aria-label="Permalink for Section 2.1.6.2.1"></a></div>
+               <section id="detail_class_Vergunning_Tijdvak"><div class="header-wrapper"><h6 id="x2-1-6-2-1-gegevensgroeptype-tijdvak"><bdi class="secno">2.1.6.2.1 </bdi>Gegevensgroeptype   Tijdvak</h6><a class="self-link" href="#detail_class_Vergunning_Tijdvak" aria-label="Permalink for Section 2.1.6.2.1"></a></div>
+                  <div class="deepheader" id="detail_attribute_Vergunning_Tijdvak_begindatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Tijdvak">Tijdvak</a> begindatum</h7>
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>begindatum</td></tr><tr><th>Formaat</th><td>
+                              <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                           </td></tr><tr><th>Patroon</th><td>
+                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
+                           </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
+                  </div>
+                  <div class="deepheader" id="detail_attribute_Vergunning_Tijdvak_einddatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Tijdvak">Tijdvak</a> einddatum</h7>
+                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>einddatum</td></tr><tr><th>Formaat</th><td>
+                              <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
+                           </td></tr><tr><th>Patroon</th><td>
+                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
+                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
+                  </div>
+               </section>
+               <section id="detail_class_Vergunning_Normwaarde"><div class="header-wrapper"><h6 id="x2-1-6-2-2-gegevensgroeptype-normwaarde"><bdi class="secno">2.1.6.2.2 </bdi>Gegevensgroeptype   Normwaarde</h6><a class="self-link" href="#detail_class_Vergunning_Normwaarde" aria-label="Permalink for Section 2.1.6.2.2"></a></div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Normwaarde_diercategorie"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Normwaarde">Normwaarde</a> diercategorie</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>diercategorie</td></tr><tr><th>Formaat</th><td>
                               <a class="link" href="#detail_class_Vergunning_Diercategorie">Diercategorie</a>
@@ -2218,7 +2402,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_Vergunning_Parameter"><div class="header-wrapper"><h6 id="x2-1-6-2-2-gegevensgroeptype-parameter"><bdi class="secno">2.1.6.2.2 </bdi>Gegevensgroeptype   Parameter</h6><a class="self-link" href="#detail_class_Vergunning_Parameter" aria-label="Permalink for Section 2.1.6.2.2"></a></div>
+               <section id="detail_class_Vergunning_Parameter"><div class="header-wrapper"><h6 id="x2-1-6-2-3-gegevensgroeptype-parameter"><bdi class="secno">2.1.6.2.3 </bdi>Gegevensgroeptype   Parameter</h6><a class="self-link" href="#detail_class_Vergunning_Parameter" aria-label="Permalink for Section 2.1.6.2.3"></a></div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Parameter_parameter"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Parameter">Parameter</a> parameter</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>parameter</td></tr><tr><th>Formaat</th><td>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Character­String</a>
@@ -2234,7 +2418,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                </section>
-               <section id="detail_class_Vergunning_Tijdsduur"><div class="header-wrapper"><h6 id="x2-1-6-2-3-gegevensgroeptype-tijdsduur"><bdi class="secno">2.1.6.2.3 </bdi>Gegevensgroeptype   Tijdsduur</h6><a class="self-link" href="#detail_class_Vergunning_Tijdsduur" aria-label="Permalink for Section 2.1.6.2.3"></a></div>
+               <section id="detail_class_Vergunning_Tijdsduur"><div class="header-wrapper"><h6 id="x2-1-6-2-4-gegevensgroeptype-tijdsduur"><bdi class="secno">2.1.6.2.4 </bdi>Gegevensgroeptype   Tijdsduur</h6><a class="self-link" href="#detail_class_Vergunning_Tijdsduur" aria-label="Permalink for Section 2.1.6.2.4"></a></div>
                   <div class="deepheader" id="detail_attribute_Vergunning_Tijdsduur_duur"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Tijdsduur">Tijdsduur</a> duur</h7>
                      <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>duur</td></tr><tr><th>Formaat</th><td>
                               <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Real</a>
@@ -2248,22 +2432,6 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            </td></tr><tr><th>Patroon</th><td>
                               De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
                            </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
-                  </div>
-               </section>
-               <section id="detail_class_Vergunning_Tijdvak"><div class="header-wrapper"><h6 id="x2-1-6-2-4-gegevensgroeptype-tijdvak"><bdi class="secno">2.1.6.2.4 </bdi>Gegevensgroeptype   Tijdvak</h6><a class="self-link" href="#detail_class_Vergunning_Tijdvak" aria-label="Permalink for Section 2.1.6.2.4"></a></div>
-                  <div class="deepheader" id="detail_attribute_Vergunning_Tijdvak_begindatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Tijdvak">Tijdvak</a> begindatum</h7>
-                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>begindatum</td></tr><tr><th>Formaat</th><td>
-                              <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                           </td></tr><tr><th>Patroon</th><td>
-                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
-                  </div>
-                  <div class="deepheader" id="detail_attribute_Vergunning_Tijdvak_einddatum"><h7>Attribuutsoort details  <a href="#global_class_Vergunning_Tijdvak">Tijdvak</a> einddatum</h7>
-                     <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>einddatum</td></tr><tr><th>Formaat</th><td>
-                              <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
-                           </td></tr><tr><th>Patroon</th><td>
-                              De verzameling van waarden die gegevens van deze attribuutsoort kunnen hebben, oftewel het waardenbereik, uitgedrukt in een specifieke structuur.
-                           </td></tr><tr><th>Kardinaliteit</th><td>0 .. 1</td></tr><tr><th>Indicatie identificerend</th><td>Nee</td></tr></tbody></table>
                   </div>
                </section>
                <section id="detail_class_Vergunning_Waarde"><div class="header-wrapper"><h6 id="x2-1-6-2-5-gegevensgroeptype-waarde"><bdi class="secno">2.1.6.2.5 </bdi>Gegevensgroeptype   Waarde</h6><a class="self-link" href="#detail_class_Vergunning_Waarde" aria-label="Permalink for Section 2.1.6.2.5"></a></div>
@@ -2304,7 +2472,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>Het komt overeen met het objecttype 'Activiteit' in het CIMOW cq. met 'de activiteit' in de STOP/TPOD-standaard. Met dien verstande dat het hier gaat om meer typen activiteiten dan in het domein waarop de STOP/TPOD-standaard gericht is (de Omgevingswet; meer dan de activiteiten in het DSO). Het domein van het voorliggende model is breder dan dat, bijvoorbeeld ook VTH betreffende transporten in de fysieke leefomgeving.</p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-10">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEIT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-11">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEIT" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_ACTIVITEIT_Activiteitidentificatie">Activiteit-identificatie</a>
                         </td><td>
@@ -2329,7 +2497,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Boolean</a>
                         </td><td>1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-8">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEIT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-14">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEIT" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            ACTIVITEIT
@@ -2369,7 +2537,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>De locatie waar de uitvoering van de activiteit plaats vindt, wordt vastgelegd door middel van het VTH-object waarbinnen of waarmee die activiteit wordt uitgevoerd. Dat kan een VTH-object zijn van het type 'inrichting' maar bijvoorbeeld ook een specifiek VTH-object voor de bettreffende Activiteituitvoering. Het VTH-object wordt namelijk ook benut om vast te leggen welke technische eenheden (installaties, voorzieningen e.d.) gebruikt worden voor of bij het uitvoeren van de activiteit </p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-11">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-12">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_ACTIVITEITUITVOERING_Activiteituitvoeringidentificatie">Activiteituitvoering-identificatie</a>
                         </td><td>
@@ -2402,7 +2570,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>0 .. 1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-9">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-15">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_ACTIVITEITUITVOERING" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            ACTIVITEITUITVOERING
@@ -2492,7 +2660,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>Regelteksten kunnen wijzigen en vervallen in desbetreffende regelingen. Het Algemeen verbindend voorschrift bevat altijd de actuele situatie.</p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-12">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-13">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_ALGEMEENVERBINDENDVOORSCHRIFT_Regeltekstidentificatie">Regeltekstidentificatie</a>
                         </td><td>
@@ -2531,7 +2699,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>0 .. 1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-10">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-16">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_ALGEMEENVERBINDENDVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            ALGEMEEN VERBINDEND VOORSCHRIFT
@@ -2563,7 +2731,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p></p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-13">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_BETROKKENE" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-14">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_BETROKKENE" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_BETROKKENE_Adresaanduidingsoort">Adresaanduidingsoort</a>
                         </td><td>
@@ -2636,7 +2804,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>Een ‘fenomeen in de werkelijkheid’ is hier beperkt tot de vijf verschijningsvormen van Geo-object. Met vier daarvan wordt aangesloten op geografische basisregistraties (BAG, BGT, BRK). De vijfde verschijningsvorm is een willekeurig 'deel van Nederland', in het geval dat niet aangesloten kan worden bij een object uit een basisregistratie. In modelleringstermen is GEO-OBJECT een generalisatie van vijf typen geo-objecten, elk type geo-object is een specialisatie van GEO-OBJECT. Een geo-object als instantie van GEO-OBJECT is telkens een instantie van één van die typen. Bijvoorbeeld, het ene geo-object is Pand 0274100000002392 en een ander geo-object is Topografisch object G1023.b2ad189a-8c46-49f2-a192-557ba07c49a2.  </p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Ja</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-14">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_GEOOBJECT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-15">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_GEOOBJECT" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_GEOOBJECT_Geometrie">Geometrie</a>
                         </td><td>
@@ -2658,7 +2826,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                      </td></tr><tr><th>Unieke aanduiding</th><td>Overweging-volgnummer + Omschrijving</td></tr><tr><th>Toelichting</th><td>
                         Een individuele Overweging maakt duidelijk waarom tot een bepaald Specifiek voorschrift gekomen is. De Overwegingen bij een Toestemming vormen gezamenlijk de zgn. considerans.
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-15">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_OVERWEGING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-16">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_OVERWEGING" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_OVERWEGING_Overwegingvolgnummer">Overweging-volgnummer</a>
                         </td><td>
@@ -2691,7 +2859,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-11">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_OVERWEGING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-17">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_OVERWEGING" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            OVERWEGING
@@ -2721,7 +2889,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>De regel wordt in een bepaalde toestemming voor het eerst gesteld en kan, in volgende toestemmingen, gewijzigd en vervallen verklaard worden. De actuele specifieke voorschriften bij een Activiteituitvoering bevatten dus altijd de actuele toegestemde situatie.</p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-16">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-17">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_SPECIFIEKVOORSCHRIFT_Voorschriftidentificatie">Voorschriftidentificatie</a>
                         </td><td>
@@ -2760,7 +2928,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>0 .. 1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-12">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-18">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_SPECIFIEKVOORSCHRIFT" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            SPECIFIEK VOORSCHRIFT
@@ -2801,7 +2969,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>Een beschikking wordt conform het RGBZ vastgelegd d.m.v. het daarin gemodelleerde Besluit. Een dergelijk besluit is een presentatievorm van de toestemmimng; de eigenlijke kenmerken maken deel uit van Toestemming. De desbetreffende besluitkenmerken zijn afgeleide kenmerken. </p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-17">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_TOESTEMMING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-18">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_TOESTEMMING" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_TOESTEMMING_ToestemmingId">Toestemming-Id</a>
                         </td><td>
@@ -2859,7 +3027,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>0 .. 1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-13">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_TOESTEMMING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-19">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_TOESTEMMING" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            TOESTEMMING
@@ -2908,7 +3076,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                      </td></tr><tr><th>Toelichting</th><td>
                         Dit betreft een view op Vestiging en aanverwante objecttypen in het HR. Het gaat hier om de vestiging als actor die economische activiteiten uitoefent , niet om vestiging zoals een gebouw. De locatie waar die activiteiten plaatsvinden is 'slechts' een afbakeningscriterium van de vestiging. Daar waar natuurlijke en niet-natuurlijke personen rechtspersonen zijn, zijn vestigingen dat niet. Maar 'je kunt er wel contact mee hebben' (aanspreken, bellen, schrijven e.d. en ze kunnen een vergunningaanvraag indienen).  
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-18">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_VESTIGING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-19">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_VESTIGING" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_VESTIGING_Vestigingsnummer">Vestigingsnummer</a>
                         </td><td>
@@ -2953,7 +3121,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-14">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_VESTIGING" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-20">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_VESTIGING" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            VESTIGING
@@ -2983,7 +3151,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                               <p>Elk VTH-object is van een bepaald type, afhankelijk van de context waarbinnen dat VTH-object is onderscheiden. Een bijzonder type VTH-object is de ‘aloude inrichting’, een fysieke locatie waar activiteiten plaatsvinden waarop in samenhang vergunning wordt verleend, toezicht wordt gehouden en/of wordt gehandhaafd. Het vastleggen van VTH-objecten van dit type  is van belang omdat diverse processen en rapportages uitgaan van een dergelijke object.    </p>
                            
                      </td></tr><tr><th>Indicatie abstract object</th><td>Nee</td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-19">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_VTHOBJECT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-20">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_VTHOBJECT" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>
                            <a class="link" href="#detail_attribute_CIM_VTHOBJECT_VTHobjectidentificatie">VTH-objectidentificatie</a>
                         </td><td>
@@ -3016,7 +3184,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                            <a class="external-link" href="https://docs.geostandaarden.nl/mim/vv-st-mim-20200225/#primitive-datatypes">Date</a>
                         </td><td>0 .. 1</td></tr></tbody></table>
                
-               <div class="header-wrapper"><h6 id="overzicht-relaties-15">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_VTHOBJECT" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-relaties-21">Overzicht relaties  </h6><a class="self-link" href="#global_class_CIM_VTHOBJECT" aria-label="Permalink for this Section"></a></div>
                   
                   <table style="width: 100%;"><colgroup style="width: 50%;"></colgroup><colgroup style="width: 50%;"></colgroup><tbody><tr><th>Rol naam met kardinaliteiten</th><th>Definitie</th></tr><tr><td>
                            VTH-OBJECT
@@ -3113,7 +3281,7 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
                <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 70%;"></colgroup><tbody><tr><th>Naam</th><td>Adres</td></tr><tr><th>Datum opname</th><td>
                         12-6-2025
                      </td></tr></tbody></table>
-               <div class="header-wrapper"><h6 id="overzicht-attributen-20">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_Adres" aria-label="Permalink for this Section"></a></div>
+               <div class="header-wrapper"><h6 id="overzicht-attributen-21">Overzicht attributen  </h6><a class="self-link" href="#global_class_CIM_Adres" aria-label="Permalink for this Section"></a></div>
                   <table style="width: 100%;"><colgroup style="width: 30%;"></colgroup><colgroup style="width: 50%;"></colgroup><colgroup style="width: 10%;"></colgroup><colgroup style="width: 10%;"></colgroup><tbody><tr><th>Attribuutnaam</th><th>Definitie</th><th>Formaat</th><th>Card</th></tr><tr><td>- 
                            <a class="link" href="#detail_attribute_CIM_Adres_Adresregel1">Adresregel 1</a>
                         </td><td>
@@ -4464,16 +4632,16 @@ een regel of van een objecttype die in de regel beschreven wordt.</p>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td>
                      <p>Categorie aanduiding van een bedrijfsinstallatie, een classificatie van installaties.</p>
                   </td></tr></tbody></table>
-            <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>mestopslagtank</th><td></td></tr></tbody></table>
+            <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>opslagtank</th><td></td></tr><tr><th>stookinstallatie</th><td></td></tr><tr><th>tankput</th><td></td></tr><tr><th>PGS15 opslagvoorziening</th><td></td></tr></tbody></table>
          </section><section id="detail_class_Vergunning_Eenheid"><div class="header-wrapper"><h4 id="x3-2-2-enumeratie-details-eenheid"><bdi class="secno">3.2.2 </bdi>Enumeratie details  Eenheid</h4><a class="self-link" href="#detail_class_Vergunning_Eenheid" aria-label="Permalink for Section 3.2.2"></a></div>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td></td></tr></tbody></table>
-            <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>eenheid1</th><td></td></tr></tbody></table>
+            <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>aantal</th><td></td></tr><tr><th>aantal per jaar</th><td></td></tr><tr><th>bouwlaag</th><td></td></tr><tr><th>centimeter</th><td></td></tr><tr><th>dagen</th><td></td></tr><tr><th>decibel</th><td></td></tr><tr><th>decibel met a-weging</th><td></td></tr><tr><th>gemiddeld geluidsniveau over het etmaal</th><td></td></tr><tr><th>graad (hoek)</th><td></td></tr><tr><th>graad celsius</th><td></td></tr><tr><th>hertz</th><td></td></tr><tr><th>jaren</th><td></td></tr><tr><th>kilogram</th><td></td></tr><tr><th>kilogram per jaar</th><td></td></tr><tr><th>kilogram per maand</th><td></td></tr><tr><th>kilogram per uur</th><td></td></tr><tr><th>kilometer</th><td></td></tr><tr><th>kilopascal</th><td></td></tr><tr><th>kubieke meter</th><td></td></tr><tr><th>kubieke meter per uur</th><td></td></tr><tr><th>kubieke meter per dag</th><td></td></tr><tr><th>kubieke meter per maand</th><td></td></tr><tr><th>kubieke meter per jaar</th><td></td></tr><tr><th>liter</th><td></td></tr><tr><th>maanden</th><td></td></tr><tr><th>meter</th><td></td></tr><tr><th>microgram per kilogram</th><td></td></tr><tr><th>microgram per kubieke meter</th><td></td></tr><tr><th>microgram per liter</th><td></td></tr><tr><th>milligram</th><td></td></tr><tr><th>milligram per liter</th><td></td></tr><tr><th>milligram per normaalkuub</th><td></td></tr><tr><th>millimeter</th><td></td></tr><tr><th>minuut</th><td></td></tr><tr><th>mol</th><td></td></tr><tr><th>normaalkuub</th><td></td></tr><tr><th>odour unit</th><td></td></tr><tr><th>odour unit per kubieke meter</th><td></td></tr><tr><th>odour unit per seconde</th><td></td></tr><tr><th>odour unit per uur</th><td></td></tr><tr><th>procent</th><td></td></tr><tr><th>seconde</th><td></td></tr><tr><th>ton</th><td></td></tr><tr><th>ton per jaar</th><td></td></tr><tr><th>uur</th><td></td></tr><tr><th>uren per jaar</th><td></td></tr><tr><th>vierkante kilometer</th><td></td></tr><tr><th>vierkante meter</th><td></td></tr><tr><th>volt</th><td></td></tr><tr><th>volt per meter</th><td></td></tr><tr><th>watt</th><td></td></tr><tr><th>weken</th><td></td></tr><tr><th>zuurgraad</th><td></td></tr></tbody></table>
          </section><section id="detail_class_Vergunning_Parametersoort"><div class="header-wrapper"><h4 id="x3-2-3-enumeratie-details-parametersoort"><bdi class="secno">3.2.3 </bdi>Enumeratie details  Parametersoort</h4><a class="self-link" href="#detail_class_Vergunning_Parametersoort" aria-label="Permalink for Section 3.2.3"></a></div>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td></td></tr></tbody></table>
             <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>individuele stof</th><td></td></tr><tr><th>stofklasse</th><td></td></tr><tr><th>stofgroep</th><td></td></tr><tr><th>ADR-klasse</th><td></td></tr><tr><th>S3b-categorie</th><td></td></tr><tr><th>totaal stof</th><td></td></tr><tr><th>grof stof</th><td></td></tr><tr><th>fijn stof</th><td></td></tr></tbody></table>
          </section><section id="detail_class_Vergunning_Thema"><div class="header-wrapper"><h4 id="x3-2-4-enumeratie-details-thema"><bdi class="secno">3.2.4 </bdi>Enumeratie details  Thema</h4><a class="self-link" href="#detail_class_Vergunning_Thema" aria-label="Permalink for Section 3.2.4"></a></div>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td></td></tr></tbody></table>
-            <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>thema1</th><td></td></tr></tbody></table>
+            <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>geluid</th><td></td></tr><tr><th>geur</th><td></td></tr><tr><th>omgevingsveiligheid</th><td></td></tr><tr><th>overig thema</th><td></td></tr></tbody></table>
          </section><section id="detail_class_Vergunning_TypeNorm"><div class="header-wrapper"><h4 id="x3-2-5-enumeratie-details-type-norm"><bdi class="secno">3.2.5 </bdi>Enumeratie details  Type­Norm</h4><a class="self-link" href="#detail_class_Vergunning_TypeNorm" aria-label="Permalink for Section 3.2.5"></a></div>
             <table style="width: 100%;" class="list"><colgroup></colgroup><tbody><tr><td></td></tr></tbody></table>
             <table style="width: 100%;" class="list"><colgroup style="width: 40%;"></colgroup><colgroup style="width: 60%;"></colgroup><tbody><tr><th>Waarde</th><th>Omschrijving</th></tr><tr><th>aantal</th><td></td></tr><tr><th>afstand</th><td></td></tr><tr><th>breedte</th><td></td></tr><tr><th>concentratie</th><td></td></tr><tr><th>debiet</th><td></td></tr><tr><th>depositie</th><td></td></tr><tr><th>diepte</th><td></td></tr><tr><th>frequentie</th><td></td></tr><tr><th>geluidbelasting</th><td></td></tr><tr><th>geluidemissie</th><td></td></tr><tr><th>geurbelasting</th><td></td></tr><tr><th>gezamenlijk geluid</th><td></td></tr><tr><th>hoeveelheid</th><td></td></tr><tr><th>hoogte</th><td></td></tr><tr><th>kans per jaar</th><td></td></tr><tr><th>maximum lengte</th><td></td></tr><tr><th>maximum oppervlakte</th><td></td></tr><tr><th>maximum opslaghoeveelheid</th><td></td></tr><tr><th>maximum temperatuur</th><td></td></tr><tr><th>maximum volume</th><td></td></tr><tr><th>minimum breedte</th><td></td></tr><tr><th>minimum diepte</th><td></td></tr><tr><th>minimum doorzet</th><td></td></tr><tr><th>minimum hoogte</th><td></td></tr><tr><th>minimum lengte</th><td></td></tr><tr><th>minimum oppervlakte</th><td></td></tr><tr><th>minimum volume</th><td></td></tr><tr><th>oppervlakte</th><td></td></tr><tr><th>periode</th><td></td></tr><tr><th>tijdsduur</th><td></td></tr></tbody></table>
